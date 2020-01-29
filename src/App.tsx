@@ -1,6 +1,7 @@
 import './App.scss';
 import React, { useState } from 'react';
 import Canvas from './cw/canvas/Canvas';
+import Icon from './cw/icon/Icon';
 import { BroadcastDrawEvents, CanvasSize, DrawEvent } from './cw/Model';
 import {
   drawLineSerieToLinesMapper,
@@ -33,6 +34,18 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
+      <Icon icon="drawLine" />
+      <Icon icon="undo" />
+      <Icon icon="redo" />
+      <Icon icon="cut" />
+      <Icon icon="undoAll" />
+      <Icon icon="noGuides" />
+      <Icon icon="redraw" />
+      <Icon icon="expand" />
+      <Icon icon="collapse" />
+      <Icon icon="drag" />
+      <Icon icon="dispose" />
+      <br />
       <Canvas
         drawOptions={drawOptions}
         canvasSize={canvasSize}
