@@ -1,7 +1,8 @@
 import './App.scss';
+import './cw/styles/cw.core.scss';
 import React, { useState } from 'react';
-import Canvas from './cw/canvas/Canvas';
-import Icon from './cw/icon/Icon';
+import Canvas from './cw/components/canvas/Canvas';
+import Icon from './cw/components/icon/Icon';
 import { BroadcastDrawEvents, CanvasSize, DrawEvent } from './cw/Model';
 import {
   drawLineSerieToLinesMapper,

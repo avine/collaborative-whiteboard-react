@@ -11,13 +11,13 @@ import {
   CanvasSize,
   DrawEvent,
   DrawOptions
-} from '../Model';
+} from '../../Model';
 import {
   getClearEvent,
   getDefaultCanvasSize,
   getDefaultDrawOptions,
   keepDrawEventsAfterClearEvent
-} from '../Operator';
+} from '../../Operator';
 
 type CanvasEvent = MouseEvent | TouchEvent;
 
