@@ -93,7 +93,8 @@ cw-color-picker {
 }
 
 .cw-tool-content {
-  position: relative;
+  position: absolute; // FIXME: FOR REACT
+  // position: relative;
   border-radius: $cw-border-radius;
   box-shadow: $cw-box-shadow;
   border: 1px solid $cw-border-color;
@@ -129,6 +130,7 @@ cw-color-picker {
 }
 
 .cw-tool-group {
+  position: absolute; // FIXME: FOR REACT
   display: inline-flex;
   box-shadow: $cw-box-shadow;
   border-radius: $cw-border-radius;
@@ -146,6 +148,7 @@ cw-color-picker {
   width: 2.5em;
   height: 2.5em;
   line-height: 2.5em;
+  text-align: center; // FIXME: FOR REACT
   color: $cw-text-color;
 }
 
@@ -172,6 +175,10 @@ cw-color-picker {
     background-color: rgba($cw-primary-color, 0.1);
     color: $cw-text-color;
   }
+}
+
+.cw-tool-group__action--collapse { // FIXME: FOR REACT
+  display: none;
 }
 
 cw-whiteboard {

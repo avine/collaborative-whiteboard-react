@@ -3,6 +3,8 @@ import './cw/styles/cw.core.scss';
 import React, { useState } from 'react';
 import Canvas from './cw/components/canvas/Canvas';
 import Icon from './cw/components/icon/Icon';
+import Tool from './cw/components/tool/Tool';
+import ToolGroup from './cw/components/tool-group/ToolGroup';
 import { BroadcastDrawEvents, CanvasSize, DrawEvent } from './cw/Model';
 import {
   drawLineSerieToLinesMapper,
@@ -46,6 +48,15 @@ const App: React.FC = () => {
       <Icon icon="collapse" />
       <Icon icon="drag" />
       <Icon icon="dispose" />
+      <br />
+      <ToolGroup>
+        <Tool>
+          <span>1</span>
+        </Tool>
+        <Tool>
+          <span>2</span>
+        </Tool>
+      </ToolGroup>
       <br />
       <Canvas
         drawOptions={drawOptions}

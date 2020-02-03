@@ -1,13 +1,43 @@
+@import url('~typeface-mali/index.css');
+
+html,
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  -webkit-tap-highlight-color: transparent;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  margin: 0;
+  font-family: 'Mali', cursive;
+}
+
+* {
+  outline: none;
+}
+
+a {
+  &,
+  &:visited {
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 150ms ease;
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: underline;
+  }
+}
+
+input,
+option {
+  font-family: inherit;
+}
+
+.button-reset-css { // FIXME: FOR REACT
+  font: inherit;
+  border: inherit;
+  background: inherit;
+  color: inherit;
 }
