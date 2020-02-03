@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState } from 'react';
 import Icon from '../icon/Icon';
-import ToolContent, { ToolContentProps } from '../tool-content/ToolContent';
+import ToolContent from '../tool-content/ToolContent';
 import Tool from '../tool/Tool';
 import ToolGroup from './ToolGroup';
 
@@ -10,33 +10,63 @@ export default {
   component: ToolGroup
 };
 
-export const Default = () => (
-  <ToolGroup>
-    <Tool
-      title="Draw line"
-      content={({ title, dispose }: ToolContentProps) => (
-        <ToolContent title={title} dispose={dispose}>
-          Hello world Draw line!
-        </ToolContent>
-      )}
-    >
-      <Icon icon="drawLine" />
-    </Tool>
-    <Tool
-      title="Undo"
-      content={({ title, dispose }: ToolContentProps) => (
-        <ToolContent title={title} dispose={dispose}>
-          Hello world Undo!
-        </ToolContent>
-      )}
-    >
-      <Icon icon="undo" />
-    </Tool>
-    <Tool title="Redo">
-      <Icon icon="redo" />
-    </Tool>
-    <Tool title="Guides" noContentSwitchMode>
-      <Icon icon="noGuides" />
-    </Tool>
-  </ToolGroup>
-);
+export const Default = () => {
+  const [active, setActive] = useState({
+    drawLine: false,
+    undo: false,
+    redo: false,
+    guides: false
+  });
+
+  const switchActive = (content: 'drawLine' | 'undo' | 'redo' | 'guides') => {
+    const a = { ...active };
+    a[content] = !a[content];
+    setActive(a);
+  };
+
+  const contents: Record<string, JSX.Element> = {
+    drawLine: (
+      <ToolContent title="Draw line" dispose={() => switchActive('drawLine')}>
+        Hello world Draw line!
+      </ToolContent>
+    ),
+    undo: (
+      <ToolContent title="Undo" dispose={() => switchActive('undo')}>
+        Hello world Undo!
+      </ToolContent>
+    )
+  };
+
+  return (
+    <>
+      <ToolGroup>
+        <Tool
+          title="Draw line"
+          active={active.drawLine}
+          activeChange={() => switchActive('drawLine')}
+        >
+          <Icon icon="drawLine" />
+        </Tool>
+        <Tool
+          title="Undo"
+          active={active.undo}
+          activeChange={() => switchActive('undo')}
+        >
+          <Icon icon="undo" />
+        </Tool>
+        <Tool title="Redo" active={active.redo} activeChange={() => {}}>
+          <Icon icon="redo" />
+        </Tool>
+        <Tool
+          title="Guides"
+          active={active.guides}
+          activeChange={() => switchActive('guides')}
+        >
+          <Icon icon="noGuides" />
+        </Tool>
+      </ToolGroup>
+      {active.drawLine ? contents.drawLine : null}
+      {active.undo ? contents.undo : null}
+    </>
+  );
+};

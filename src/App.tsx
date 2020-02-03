@@ -2,15 +2,13 @@ import './App.scss';
 import './cw/styles/cw.core.scss';
 import React, { useState } from 'react';
 import Canvas from './cw/components/canvas/Canvas';
-import Icon from './cw/components/icon/Icon';
-import Tool from './cw/components/tool/Tool';
-import ToolGroup from './cw/components/tool-group/ToolGroup';
 import { BroadcastDrawEvents, CanvasSize, DrawEvent } from './cw/Model';
 import {
   drawLineSerieToLinesMapper,
   getDefaultCanvasSize,
   getDefaultDrawOptions
 } from './cw/Operator';
+import CanvasTool from './cw/components/canvas-tool/CanvasTool';
 
 const App: React.FC = () => {
   const [canvasSize, setCanvasSize] = useState<CanvasSize>(
@@ -37,27 +35,7 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      <Icon icon="drawLine" />
-      <Icon icon="undo" />
-      <Icon icon="redo" />
-      <Icon icon="cut" />
-      <Icon icon="undoAll" />
-      <Icon icon="noGuides" />
-      <Icon icon="redraw" />
-      <Icon icon="expand" />
-      <Icon icon="collapse" />
-      <Icon icon="drag" />
-      <Icon icon="dispose" />
-      <br />
-      <ToolGroup>
-        <Tool>
-          <span>1</span>
-        </Tool>
-        <Tool>
-          <span>2</span>
-        </Tool>
-      </ToolGroup>
-      <br />
+      <CanvasTool />
       <Canvas
         drawOptions={drawOptions}
         canvasSize={canvasSize}

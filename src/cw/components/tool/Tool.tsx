@@ -1,48 +1,46 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
-import { ToolContentProps } from '../tool-content/ToolContent';
+import classNames from 'classnames';
+import React from 'react';
 
 export interface ToolProps {
+  classNameModifier?: string;
   title?: string;
-  content?: React.FunctionComponentFactory<ToolContentProps>;
-  /**
-   * By default, when `content` is NOT provided, `active` is always `false`, and `activeChange` always emits `true`.
-   * When "switch mode" is enabled, `active` is alternately `true` and `false`.
-   */
-  noContentSwitchMode?: boolean;
-  activeChange?: (active: boolean) => void;
+  active?: boolean;
+  activeChange?: () => void;
+  doubleClickHandler?: () => void;
 }
 
 const Tool: React.FC<ToolProps> = ({
+  classNameModifier,
   title,
-  content,
-  noContentSwitchMode,
+  active,
   activeChange,
+  doubleClickHandler,
   children
 }) => {
-  const [isActive, setActive] = useState(false);
-  const activeHandler = () => {
-    if (content || noContentSwitchMode) {
-      setActive(!isActive);
-      activeChange(!isActive);
-    } else {
-      activeChange(true);
-    }
-  };
+  const className = classNames('cw-tool-group__action', classNameModifier, {
+    'cw-tool-group__action--active': active
+  });
   return (
-    <>
-      <div
-        role="button"
-        tabIndex={0}
-        onClick={activeHandler}
-        onKeyDown={activeHandler}
-        title={title}
-      >
-        {children}
-      </div>
-      {content && isActive ? content({ title, dispose: activeHandler }) : null}
-    </>
+    <div
+      role="button"
+      tabIndex={0}
+      className={className}
+      onClick={activeChange}
+      onKeyDown={activeChange}
+      onDoubleClick={doubleClickHandler}
+      title={title}
+    >
+      {children}
+    </div>
   );
+};
+
+Tool.defaultProps = {
+  classNameModifier: 'cw-tool-group__action--tool',
+  active: false,
+  activeChange: () => {},
+  doubleClickHandler: () => {}
 };
 
 export default Tool;
