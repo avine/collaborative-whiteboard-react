@@ -1,8 +1,11 @@
 /* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/sort-comp */
 import './Canvas.scss';
+
+/* eslint-disable react/sort-comp */
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { createRef, MouseEvent, TouchEvent } from 'react';
+
 import {
   BroadcastDrawEvents,
   CanvasLine,
@@ -23,7 +26,7 @@ type CanvasEvent = MouseEvent | TouchEvent;
 
 export interface CanvasProps {
   canvasSize?: CanvasSize;
-  // showGuides?: boolean;
+  showGuides?: boolean;
   broadcast?: BroadcastDrawEvents;
   drawOptions?: DrawOptions;
   drawDisabled?: boolean;
@@ -35,7 +38,7 @@ export default class Canvas extends React.Component<CanvasProps> {
   // eslint-disable-next-line react/static-property-placement
   static defaultProps: CanvasProps = {
     canvasSize: getDefaultCanvasSize(),
-    // showGuides: true,
+    showGuides: true,
     drawOptions: getDefaultDrawOptions(),
     drawDisabled: false,
     canvasSizeChange: () => {},
@@ -48,7 +51,7 @@ export default class Canvas extends React.Component<CanvasProps> {
       width: PropTypes.number,
       height: PropTypes.number
     }),
-    // showGuides: PropTypes.bool,
+    showGuides: PropTypes.bool,
     drawOptions: PropTypes.shape({
       lineWidth: PropTypes.number,
       strokeStyle: PropTypes.string
@@ -68,20 +71,28 @@ export default class Canvas extends React.Component<CanvasProps> {
 
   private lineSerieBuffer: number[] = [];
 
+  private get className() {
+    return classNames('cw-canvas', {
+      'cw-canvas--guides': this.props.showGuides
+    });
+  }
+
   componentDidMount() {
     this.applyCanvasSize();
     this.initCanvasCxt();
   }
 
-  componentDidUpdate({ canvasSize }: CanvasProps) {
+  componentDidUpdate({ canvasSize, broadcast }: CanvasProps) {
     if (
-      canvasSize &&
-      (canvasSize.height !== this.props.canvasSize.height ||
-        canvasSize.width !== this.props.canvasSize.width)
+      this.props.canvasSize.width !== canvasSize?.width ||
+      this.props.canvasSize.height !== canvasSize?.height
     ) {
       this.applyCanvasSize();
     }
-    if (this.props.broadcast?.events?.length) {
+    if (
+      this.props.broadcast?.events?.length &&
+      this.props.broadcast !== broadcast
+    ) {
       this.broadcastHandler();
     }
   }
@@ -340,7 +351,7 @@ export default class Canvas extends React.Component<CanvasProps> {
   render() {
     return (
       <canvas
-        className="cw-canvas"
+        className={this.className}
         ref={this.canvasRef}
         onTouchStart={this.drawStart.bind(this)}
         onTouchMove={this.drawMove.bind(this)}
