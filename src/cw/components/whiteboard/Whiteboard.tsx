@@ -3,17 +3,18 @@ import { BroadcastDrawEvents, DrawEvent } from '../../Model';
 import { getDefaultCanvasSize, getDefaultDrawOptions } from '../../Operator';
 import CanvasService from '../../Service';
 import Canvas from '../canvas/Canvas';
+import Cut from '../cut/Cut';
+import DrawLine from '../draw-line/DrawLine';
 import Icon from '../icon/Icon';
 import ToolContent from '../tool-content/ToolContent';
 import ToolGroup from '../tool-group/ToolGroup';
 import Tool from '../tool/Tool';
-import DrawLine from '../draw-line/DrawLine';
 
 const Whiteboard = () => {
   const [service] = useState(new CanvasService());
 
   const [showDrawLine, setShowDrawLine] = useState(false);
-  // const [showCut, setShowCut] = useState(false);
+  const [showCut, setShowCut] = useState(false);
   const [showGuides, setShowGuides] = useState(true);
 
   const [drawOptions, setDrawOptions] = useState(getDefaultDrawOptions());
@@ -31,6 +32,12 @@ const Whiteboard = () => {
       dispose={() => setShowDrawLine(!showDrawLine)}
     >
       <DrawLine drawOptions={drawOptions} drawOptionsChange={setDrawOptions} />
+    </ToolContent>
+  );
+
+  const cut = (
+    <ToolContent title="Cut" dispose={() => setShowCut(!showCut)}>
+      <Cut service={service} />
     </ToolContent>
   );
 
@@ -52,6 +59,10 @@ const Whiteboard = () => {
           <Icon icon="redo" />
         </Tool>
 
+        <Tool title="Cut" clickHandler={() => setShowCut(!showCut)}>
+          <Icon icon="cut" />
+        </Tool>
+
         <Tool title="Undo all" clickHandler={() => service.undoAll()}>
           <Icon icon="undoAll" />
         </Tool>
@@ -70,6 +81,7 @@ const Whiteboard = () => {
       </ToolGroup>
 
       {showDrawLine ? drawLine : null}
+      {showCut ? cut : null}
 
       <Canvas
         drawOptions={drawOptions}
