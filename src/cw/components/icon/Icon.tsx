@@ -22,7 +22,7 @@ export const iconMap: Record<IconType, JSX.Element> = {
   // paint-bruch
   drawLine: (
     <svg
-      className="icon"
+      className="cw-icon__inner"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 512 512"
     >
@@ -35,7 +35,7 @@ export const iconMap: Record<IconType, JSX.Element> = {
   // undo-alt
   undo: (
     <svg
-      className="icon"
+      className="cw-icon__inner"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 512 512"
     >
@@ -48,7 +48,7 @@ export const iconMap: Record<IconType, JSX.Element> = {
   // redo-alt
   redo: (
     <svg
-      className="icon"
+      className="cw-icon__inner"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 512 512"
     >
@@ -61,7 +61,7 @@ export const iconMap: Record<IconType, JSX.Element> = {
   // cut
   cut: (
     <svg
-      className="icon"
+      className="cw-icon__inner"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 448 512"
     >
@@ -74,7 +74,7 @@ export const iconMap: Record<IconType, JSX.Element> = {
   // trash
   undoAll: (
     <svg
-      className="icon"
+      className="cw-icon__inner"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 448 512"
     >
@@ -87,7 +87,7 @@ export const iconMap: Record<IconType, JSX.Element> = {
   // border-none
   noGuides: (
     <svg
-      className="icon"
+      className="cw-icon__inner"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 448 512"
     >
@@ -100,7 +100,7 @@ export const iconMap: Record<IconType, JSX.Element> = {
   // video
   redraw: (
     <svg
-      className="icon"
+      className="cw-icon__inner"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 576 512"
     >
@@ -131,7 +131,7 @@ export const iconMap: Record<IconType, JSX.Element> = {
   // arrow-alt
   drag: (
     <svg
-      className="icon"
+      className="cw-icon__inner"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 512 512"
     >
@@ -144,7 +144,7 @@ export const iconMap: Record<IconType, JSX.Element> = {
   // times
   dispose: (
     <svg
-      className="icon"
+      className="cw-icon__inner"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 352 512"
     >
@@ -158,7 +158,7 @@ export const iconMap: Record<IconType, JSX.Element> = {
 
 // eslint-disable-next-line react/prop-types
 const Icon: React.FC<IconProps> = ({ icon }) => (
-  <div className="icon-container">{iconMap[icon]}</div>
+  <div className="cw-icon">{iconMap[icon]}</div>
 );
 
 export default Icon;
