@@ -43,24 +43,24 @@ export const Default = () => {
         <Tool
           title="Draw line"
           active={active.drawLine}
-          activeChange={() => switchActive('drawLine')}
+          clickHandler={() => switchActive('drawLine')}
         >
           <Icon icon="drawLine" />
         </Tool>
         <Tool
           title="Undo"
           active={active.undo}
-          activeChange={() => switchActive('undo')}
+          clickHandler={() => switchActive('undo')}
         >
           <Icon icon="undo" />
         </Tool>
-        <Tool title="Redo" active={active.redo} activeChange={() => {}}>
+        <Tool title="Redo" active={active.redo} clickHandler={() => {}}>
           <Icon icon="redo" />
         </Tool>
         <Tool
           title="Guides"
           active={active.guides}
-          activeChange={() => switchActive('guides')}
+          clickHandler={() => switchActive('guides')}
         >
           <Icon icon="noGuides" />
         </Tool>

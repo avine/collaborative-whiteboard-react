@@ -27,7 +27,7 @@ const ToolContent: React.FC<ToolContentProps> = ({
             tabIndex={0}
             className="button-reset-css cw-tool-content__action"
             onClick={dispose}
-            onKeyDown={dispose}
+            onKeyDown={() => {}}
           >
             <Icon icon="dispose" />
           </div>
@@ -40,3 +40,7 @@ const ToolContent: React.FC<ToolContentProps> = ({
 };
 
 export default ToolContent;
+
+ToolContent.defaultProps = {
+  dispose: () => {}
+};

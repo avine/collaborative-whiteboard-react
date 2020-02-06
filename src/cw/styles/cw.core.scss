@@ -93,8 +93,10 @@ cw-color-picker {
 }
 
 .cw-tool-content {
-  position: absolute; // FIXME: FOR REACT
   // position: relative;
+  position: absolute; // FIXME: FOR REACT
+  left: 0; // FIXME: FOR REACT
+  top: 0; // FIXME: FOR REACT
   border-radius: $cw-border-radius;
   box-shadow: $cw-box-shadow;
   border: 1px solid $cw-border-color;
@@ -131,6 +133,8 @@ cw-color-picker {
 
 .cw-tool-group {
   position: absolute; // FIXME: FOR REACT
+  left: 0; // FIXME: FOR REACT
+  top: 0; // FIXME: FOR REACT
   display: inline-flex;
   box-shadow: $cw-box-shadow;
   border-radius: $cw-border-radius;

@@ -39,40 +39,40 @@ const CanvasTool = () => {
         <Tool
           title="Draw line"
           active={active.drawLine}
-          activeChange={() => switchActive('drawLine')}
+          clickHandler={() => switchActive('drawLine')}
         >
           <Icon icon="drawLine" />
         </Tool>
 
-        <Tool title="Undo" activeChange={() => {}}>
+        <Tool title="Undo" clickHandler={() => {}}>
           <Icon icon="undo" />
         </Tool>
 
-        <Tool title="Redo" activeChange={() => {}}>
+        <Tool title="Redo" clickHandler={() => {}}>
           <Icon icon="redo" />
         </Tool>
 
         <Tool
           title="Cut"
           active={active.cut}
-          activeChange={() => switchActive('cut')}
+          clickHandler={() => switchActive('cut')}
         >
           <Icon icon="cut" />
         </Tool>
 
-        <Tool title="Undo all" activeChange={() => {}}>
+        <Tool title="Undo all" clickHandler={() => {}}>
           <Icon icon="undoAll" />
         </Tool>
 
         <Tool
           title="Guides"
           active={active.guides}
-          activeChange={() => switchActive('guides')}
+          clickHandler={() => switchActive('guides')}
         >
           <Icon icon="noGuides" />
         </Tool>
 
-        <Tool title="Redraw" activeChange={() => {}}>
+        <Tool title="Redraw" clickHandler={() => {}}>
           <Icon icon="redraw" />
         </Tool>
       </ToolGroup>

@@ -21,8 +21,8 @@ const ToolGroup: React.FC<ToolGroupProps> = ({ children }) => {
     <Draggable handle=".cw-tool-group__action--drag" bounds="body">
       <div className={className}>
         <Tool
-          classNameModifier="cw-tool-group__action--drag"
           title="Drag / Change direction"
+          classNameModifier="cw-tool-group__action--drag"
           doubleClickHandler={() => setLayoutVertical(!layoutVertical)}
         >
           <Icon icon="drag" />
@@ -31,7 +31,7 @@ const ToolGroup: React.FC<ToolGroupProps> = ({ children }) => {
         <Tool
           title={collapse ? 'Expand' : 'Collapse'}
           active={collapse}
-          activeChange={() => setCollapse(!collapse)}
+          clickHandler={() => setCollapse(!collapse)}
         >
           <Icon icon={collapse ? 'expand' : 'collapse'} />
         </Tool>

@@ -36,7 +36,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
             style={{ backgroundColor: clr }}
             className={className(clr)}
             onClick={() => colorChange(clr)}
-            onKeyDown={() => colorChange(clr)}
+            onKeyDown={() => {}}
           />
         );
         return elements;

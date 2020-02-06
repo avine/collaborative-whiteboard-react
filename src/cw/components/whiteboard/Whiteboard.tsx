@@ -39,32 +39,32 @@ const Whiteboard = () => {
       <ToolGroup>
         <Tool
           title="Draw line"
-          activeChange={() => setShowDrawLine(!showDrawLine)}
+          clickHandler={() => setShowDrawLine(!showDrawLine)}
         >
           <Icon icon="drawLine" />
         </Tool>
 
-        <Tool title="Undo" activeChange={() => service.undo()}>
+        <Tool title="Undo" clickHandler={() => service.undo()}>
           <Icon icon="undo" />
         </Tool>
 
-        <Tool title="Redo" activeChange={() => service.redo()}>
+        <Tool title="Redo" clickHandler={() => service.redo()}>
           <Icon icon="redo" />
         </Tool>
 
-        <Tool title="Undo all" activeChange={() => service.undoAll()}>
+        <Tool title="Undo all" clickHandler={() => service.undoAll()}>
           <Icon icon="undoAll" />
         </Tool>
 
         <Tool
           title="Guides"
           active={showGuides}
-          activeChange={() => setShowGuides(!showGuides)}
+          clickHandler={() => setShowGuides(!showGuides)}
         >
           <Icon icon="noGuides" />
         </Tool>
 
-        <Tool title="Redraw" activeChange={() => service.redraw()}>
+        <Tool title="Redraw" clickHandler={() => service.redraw()}>
           <Icon icon="redraw" />
         </Tool>
       </ToolGroup>

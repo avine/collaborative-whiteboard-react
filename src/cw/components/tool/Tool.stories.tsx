@@ -1,3 +1,5 @@
+/* USELESS: <Tool /> should be a child of <TooGroup /> */
+
 import React from 'react';
 import Tool from './Tool';
 
