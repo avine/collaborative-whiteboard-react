@@ -7,8 +7,8 @@ import Cut from '../cut/Cut';
 import DrawLine from '../draw-line/DrawLine';
 import Icon from '../icon/Icon';
 import ToolContent from '../tool-content/ToolContent';
+import Tool from '../tool-group/Tool';
 import ToolGroup from '../tool-group/ToolGroup';
-import Tool from '../tool/Tool';
 
 const Whiteboard = () => {
   const [service] = useState(new CanvasService());

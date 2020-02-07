@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
 import Draggable from 'react-draggable';
 import Icon from '../icon/Icon';
-import Tool from '../tool/Tool';
+import Tool from './Tool';
 
 export interface ToolGroupProps {
   dragBounds?: string;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Icon from '../icon/Icon';
 import ToolContent from '../tool-content/ToolContent';
-import Tool from '../tool/Tool';
+import Tool from './Tool';
 import ToolGroup from './ToolGroup';
 
 export default {

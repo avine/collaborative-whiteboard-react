@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Icon from '../icon/Icon';
 import ToolContent from '../tool-content/ToolContent';
+import Tool from '../tool-group/Tool';
 import ToolGroup from '../tool-group/ToolGroup';
-import Tool from '../tool/Tool';
 
 type SwitchableType = 'drawLine' | 'cut' | 'guides';
 
