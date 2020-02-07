@@ -1,7 +1,6 @@
 /* eslint-disable react/destructuring-assignment */
-import './Canvas.scss';
-
 /* eslint-disable react/sort-comp */
+import './Canvas.scss';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { createRef, MouseEvent, TouchEvent } from 'react';

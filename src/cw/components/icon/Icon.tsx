@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import './Icon.scss';
 import React from 'react';
 
@@ -156,7 +157,6 @@ export const iconMap: Record<IconType, JSX.Element> = {
   )
 };
 
-// eslint-disable-next-line react/prop-types
 const Icon: React.FC<IconProps> = ({ icon }) => (
   <div className="cw-icon">{iconMap[icon]}</div>
 );

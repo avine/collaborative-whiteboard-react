@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import Icon from '../icon/Icon';
 import ToolContent from '../tool-content/ToolContent';

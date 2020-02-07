@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { DrawOptions } from '../../Model';
@@ -46,10 +45,10 @@ const DrawLine: React.FC<DrawLineProps> = ({
   );
 };
 
-export default DrawLine;
-
 DrawLine.defaultProps = {
   lineWidthMax: 30,
   drawOptions: getDefaultDrawOptions(),
   drawOptionsChange: () => {}
 };
+
+export default DrawLine;

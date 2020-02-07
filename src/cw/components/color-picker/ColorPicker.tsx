@@ -45,10 +45,10 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
   );
 };
 
-export default ColorPicker;
-
 ColorPicker.defaultProps = {
   colors: getDefaultColors(),
   color: defaultColor,
   colorChange: () => {}
 };
+
+export default ColorPicker;

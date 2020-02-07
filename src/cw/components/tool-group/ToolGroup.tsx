@@ -1,4 +1,3 @@
-/* eslint-disable prefer-template */
 import classNames from 'classnames';
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
@@ -6,10 +5,11 @@ import Draggable from 'react-draggable';
 import Icon from '../icon/Icon';
 import Tool from '../tool/Tool';
 
-export interface ToolGroupProps {}
+export interface ToolGroupProps {
+  dragBounds?: string;
+}
 
-// eslint-disable-next-line react/prop-types
-const ToolGroup: React.FC<ToolGroupProps> = ({ children }) => {
+const ToolGroup: React.FC<ToolGroupProps> = ({ dragBounds, children }) => {
   const [layoutVertical, setLayoutVertical] = useState(false);
   const [collapse, setCollapse] = useState(false);
 
@@ -18,7 +18,7 @@ const ToolGroup: React.FC<ToolGroupProps> = ({ children }) => {
   });
 
   return createPortal(
-    <Draggable handle=".cw-tool-group__action--drag" bounds="body">
+    <Draggable handle=".cw-tool-group__action--drag" bounds={dragBounds}>
       <div className={className}>
         <Tool
           title="Drag / Change direction"
@@ -39,6 +39,10 @@ const ToolGroup: React.FC<ToolGroupProps> = ({ children }) => {
     </Draggable>,
     document.body
   );
+};
+
+ToolGroup.defaultProps = {
+  dragBounds: 'body'
 };
 
 export default ToolGroup;

@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import { createPortal } from 'react-dom';
 import Draggable from 'react-draggable';
@@ -7,15 +6,17 @@ import Icon from '../icon/Icon';
 export interface ToolContentProps {
   title: string;
   dispose: () => void;
+  dragBounds?: string;
 }
 
 const ToolContent: React.FC<ToolContentProps> = ({
   title,
   dispose,
+  dragBounds,
   children
 }) => {
   return createPortal(
-    <Draggable handle=".cw-tool-content__action--drag" bounds="body">
+    <Draggable handle=".cw-tool-content__action--drag" bounds={dragBounds}>
       <div className="cw-tool-content">
         <div className="cw-tool-content__header">
           <div className="cw-tool-content__action cw-tool-content__action--drag">
@@ -39,8 +40,8 @@ const ToolContent: React.FC<ToolContentProps> = ({
   );
 };
 
-export default ToolContent;
-
 ToolContent.defaultProps = {
-  dispose: () => {}
+  dragBounds: 'body'
 };
+
+export default ToolContent;

@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import { CutRange } from '../../Model';
@@ -85,5 +84,3 @@ const Cut: React.FC<ColorPickerProps> = ({ service }) => {
 };
 
 export default Cut;
-
-Cut.defaultProps = {};

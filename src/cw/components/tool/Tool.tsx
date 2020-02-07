@@ -26,8 +26,8 @@ const Tool: React.FC<ToolProps> = ({
     <div
       role="button"
       tabIndex={0}
-      className={className}
       title={title}
+      className={className}
       onClick={clickHandler}
       onKeyDown={() => {}}
       onDoubleClick={doubleClickHandler}
