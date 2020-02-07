@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable react/prop-types */
+import React, { useEffect, useRef, useState } from 'react';
 import { BroadcastDrawEvents, DrawEvent } from '../../Model';
 import { getDefaultCanvasSize, getDefaultDrawOptions } from '../../Operator';
 import CanvasService from '../../Service';
@@ -10,9 +11,31 @@ import ToolContent from '../tool-content/ToolContent';
 import Tool from '../tool-group/Tool';
 import ToolGroup from '../tool-group/ToolGroup';
 
-const Whiteboard = () => {
+export interface WhiteboardProps {
+  fitParentElement?: boolean;
+}
+
+const Whiteboard: React.FC<WhiteboardProps> = ({ fitParentElement }) => {
   const [service] = useState(new CanvasService());
   const [historyCut, setHistoryCut] = useState<BroadcastDrawEvents>();
+
+  const [canvasSize, setCanvasSize] = useState(getDefaultCanvasSize());
+  const canvasContainer = useRef<HTMLDivElement>();
+
+  useEffect(() => {
+    if (fitParentElement) {
+      const element = canvasContainer.current;
+      // Fit the container
+      element.style.width = '100%';
+      element.style.height = '100%';
+      // Freeze both container and canvas sizes
+      const { width, height } = element.getBoundingClientRect();
+      element.style.width = `${width}px`;
+      element.style.height = `${height}px`;
+      setCanvasSize({ width, height });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const subscription = service.broadcastHistoryCut$.subscribe(setHistoryCut);
@@ -29,8 +52,6 @@ const Whiteboard = () => {
   service.broadcast$.subscribe(_broadcast => setBroadcast(_broadcast));
 
   const drawHandler = (event: DrawEvent) => service.emit(event);
-
-  const canvasSize = getDefaultCanvasSize();
 
   const drawLine = (
     <ToolContent
@@ -89,7 +110,7 @@ const Whiteboard = () => {
       {showDrawLine ? drawLine : null}
       {showCut ? cut : null}
 
-      <div className="cw-whiteboard__canvas">
+      <div className="cw-whiteboard__canvas" ref={canvasContainer}>
         <Canvas
           className="cw-whiteboard__canvas-draw"
           drawOptions={drawOptions}
@@ -111,6 +132,10 @@ const Whiteboard = () => {
       </div>
     </>
   );
+};
+
+Whiteboard.defaultProps = {
+  fitParentElement: true
 };
 
 export default Whiteboard;
