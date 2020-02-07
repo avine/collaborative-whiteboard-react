@@ -79,10 +79,6 @@ export default class Canvas extends React.Component<CanvasProps> {
   componentDidMount() {
     this.applyCanvasSize();
     this.initCanvasCxt();
-    this.componentDidUpdate({
-      canvasSize: this.props.canvasSize,
-      broadcast: this.props.broadcast
-    });
   }
 
   componentDidUpdate({ canvasSize, broadcast }: CanvasProps) {
