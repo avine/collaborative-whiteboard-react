@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BroadcastDrawEvents, DrawEvent } from '../../Model';
 import { getDefaultCanvasSize, getDefaultDrawOptions } from '../../Operator';
 import CanvasService from '../../Service';
@@ -12,6 +12,12 @@ import ToolGroup from '../tool-group/ToolGroup';
 
 const Whiteboard = () => {
   const [service] = useState(new CanvasService());
+  const [historyCut, setHistoryCut] = useState<BroadcastDrawEvents>();
+
+  useEffect(() => {
+    const subscription = service.broadcastHistoryCut$.subscribe(setHistoryCut);
+    return () => subscription.unsubscribe();
+  }, [service]);
 
   const [showDrawLine, setShowDrawLine] = useState(false);
   const [showCut, setShowCut] = useState(false);
@@ -83,13 +89,26 @@ const Whiteboard = () => {
       {showDrawLine ? drawLine : null}
       {showCut ? cut : null}
 
-      <Canvas
-        drawOptions={drawOptions}
-        canvasSize={canvasSize}
-        showGuides={showGuides}
-        broadcast={broadcast}
-        draw={drawHandler}
-      />
+      <div className="cw-whiteboard__canvas">
+        <Canvas
+          className="cw-whiteboard__canvas-draw"
+          drawOptions={drawOptions}
+          canvasSize={canvasSize}
+          showGuides={showGuides}
+          broadcast={broadcast}
+          draw={drawHandler}
+        />
+        {showCut && (
+          <Canvas
+            className="cw-whiteboard__canvas-cut"
+            drawOptions={drawOptions}
+            canvasSize={canvasSize}
+            showGuides={!showGuides}
+            drawDisabled
+            broadcast={historyCut}
+          />
+        )}
+      </div>
     </>
   );
 };

@@ -1,6 +1,5 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/sort-comp */
-import './Canvas.scss';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { createRef, MouseEvent, TouchEvent } from 'react';
@@ -24,6 +23,7 @@ import {
 type CanvasEvent = MouseEvent | TouchEvent;
 
 export interface CanvasProps {
+  className?: string;
   canvasSize?: CanvasSize;
   showGuides?: boolean;
   broadcast?: BroadcastDrawEvents;
@@ -71,7 +71,7 @@ export default class Canvas extends React.Component<CanvasProps> {
   private lineSerieBuffer: number[] = [];
 
   private get className() {
-    return classNames('cw-canvas', {
+    return classNames('cw-canvas', this.props.className, {
       'cw-canvas--guides': this.props.showGuides
     });
   }
@@ -79,6 +79,10 @@ export default class Canvas extends React.Component<CanvasProps> {
   componentDidMount() {
     this.applyCanvasSize();
     this.initCanvasCxt();
+    this.componentDidUpdate({
+      canvasSize: this.props.canvasSize,
+      broadcast: this.props.broadcast
+    });
   }
 
   componentDidUpdate({ canvasSize, broadcast }: CanvasProps) {

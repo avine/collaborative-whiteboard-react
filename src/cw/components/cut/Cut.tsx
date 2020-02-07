@@ -4,8 +4,6 @@ import { CutRange } from '../../Model';
 import CanvasService from '../../Service';
 
 export interface CutProps {
-  // FIXME: Perhaps, component should not depend on this!
-  // Instead expose some `service` properties as component props...
   service: CanvasService;
 }
 
@@ -22,20 +20,20 @@ const Cut: React.FC<CutProps> = ({ service }) => {
     setSpread(maxSpread);
   }
 
+  const getCutRange = (_index = index, _spread = spread): CutRange => [
+    _index,
+    _index + _spread - 1
+  ];
+
   useEffect(() => {
     const subscription = service.historyCutLength$.subscribe(cutLength => {
       setLastIndex(Math.max(0, cutLength - 1));
       setMaxSpread(Math.max(1, cutLength));
     });
-    return () => {
-      subscription.unsubscribe();
-    };
-  }, [service]);
-
-  const getCutRange = (_index = index, _spread = spread): CutRange => [
-    _index,
-    _index + _spread - 1
-  ];
+    service.setCutRange(getCutRange());
+    return () => subscription.unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const indexHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newIndex = +event.target.value;
