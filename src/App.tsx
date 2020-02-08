@@ -8,17 +8,17 @@ import {
   getDefaultCanvasSize,
   getDefaultDrawOptions
 } from './cw/Operator';
-import CanvasTool from './cw/components/canvas-tool/CanvasTool';
 
 const App: React.FC = () => {
   const [canvasSize, setCanvasSize] = useState<CanvasSize>(
     getDefaultCanvasSize()
   );
 
-  const [broadcast, setBroadcast] = useState<BroadcastDrawEvents>({
-    animate: true,
-    events: []
-  });
+  const [broadcast, setBroadcast] = useState<BroadcastDrawEvents>();
+
+  const sizeHandler = () => {
+    setCanvasSize({ height: 400, width: 400 });
+  };
 
   const drawHandler = (drawEvent: DrawEvent) => {
     setBroadcast({
@@ -27,28 +27,23 @@ const App: React.FC = () => {
     });
   };
 
-  const sizeHandler = () => {
-    setCanvasSize({ height: 500, width: 500 });
-  };
-
   const drawOptions = getDefaultDrawOptions();
 
   return (
-    <div className="App">
-      <CanvasTool />
-      <Canvas
-        drawOptions={drawOptions}
-        canvasSize={canvasSize}
-        draw={drawHandler}
-      />
-      &nbsp;&nbsp;
-      <Canvas
-        drawDisabled
-        drawOptions={drawOptions}
-        canvasSize={canvasSize}
-        broadcast={broadcast}
-      />
-      <br />
+    <div className="app">
+      <div className="app__canvas">
+        <Canvas
+          drawOptions={drawOptions}
+          canvasSize={canvasSize}
+          draw={drawHandler}
+        />
+        <Canvas
+          drawDisabled
+          drawOptions={drawOptions}
+          canvasSize={canvasSize}
+          broadcast={broadcast}
+        />
+      </div>
       <button type="button" onClick={sizeHandler}>
         Change size
       </button>

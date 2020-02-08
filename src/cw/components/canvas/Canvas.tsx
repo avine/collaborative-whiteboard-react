@@ -29,7 +29,7 @@ export interface CanvasProps {
   broadcast?: BroadcastDrawEvents;
   drawOptions?: DrawOptions;
   drawDisabled?: boolean;
-  canvasSizeChange?: (canvasSize: CanvasSize) => void;
+  canvasSizeHandler?: (canvasSize: CanvasSize) => void;
   draw?: (drawEvent: DrawEvent) => void;
 }
 
@@ -40,7 +40,7 @@ export default class Canvas extends React.Component<CanvasProps> {
     showGuides: true,
     drawOptions: getDefaultDrawOptions(),
     drawDisabled: false,
-    canvasSizeChange: () => {},
+    canvasSizeHandler: () => {},
     draw: () => {}
   };
 
@@ -56,7 +56,7 @@ export default class Canvas extends React.Component<CanvasProps> {
       strokeStyle: PropTypes.string
     }),
     drawDisabled: PropTypes.bool,
-    canvasSizeChange: PropTypes.func,
+    canvasSizeHandler: PropTypes.func,
     draw: PropTypes.func
   };
 
@@ -106,7 +106,7 @@ export default class Canvas extends React.Component<CanvasProps> {
     // Actually, the only way to change the value of `canvasSize` is when its @Input() changes.
     // And emitting the value we just received seems to be useless!
     // But we still need to do this, so that the wrapping component can react to this change asynchronously.
-    this.props.canvasSizeChange(this.props.canvasSize);
+    this.props.canvasSizeHandler(this.props.canvasSize);
   }
 
   private initCanvasCxt() {

@@ -7,13 +7,13 @@ import { getDefaultColors, defaultColor } from '../../Operator';
 export interface ColorPickerProps {
   colors?: string[];
   color?: string;
-  colorChange?: (color: string) => void;
+  colorHandler?: (color: string) => void;
 }
 
 const ColorPicker: React.FC<ColorPickerProps> = ({
   colors,
   color,
-  colorChange
+  colorHandler
 }) => {
   const breakIndex = Math.round(colors.length / 3);
 
@@ -35,7 +35,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
             key={clr}
             style={{ backgroundColor: clr }}
             className={className(clr)}
-            onClick={() => colorChange(clr)}
+            onClick={() => colorHandler(clr)}
             onKeyDown={() => {}}
           />
         );
@@ -48,7 +48,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 ColorPicker.defaultProps = {
   colors: getDefaultColors(),
   color: defaultColor,
-  colorChange: () => {}
+  colorHandler: () => {}
 };
 
 export default ColorPicker;

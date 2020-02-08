@@ -11,6 +11,8 @@ import ToolContent from '../tool-content/ToolContent';
 import Tool from '../tool-group/Tool';
 import ToolGroup from '../tool-group/ToolGroup';
 
+// FIXME: Missing the "cw-whiteboard" css (because in React the component itself is NOT a DOM element)
+
 export interface WhiteboardProps {
   fitParentElement?: boolean;
 }
@@ -58,7 +60,7 @@ const Whiteboard: React.FC<WhiteboardProps> = ({ fitParentElement }) => {
       title="Draw line"
       dispose={() => setShowDrawLine(!showDrawLine)}
     >
-      <DrawLine drawOptions={drawOptions} drawOptionsChange={setDrawOptions} />
+      <DrawLine drawOptions={drawOptions} drawOptionsHandler={setDrawOptions} />
     </ToolContent>
   );
 

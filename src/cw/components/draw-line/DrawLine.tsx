@@ -7,19 +7,19 @@ import ColorPicker from '../color-picker/ColorPicker';
 export interface DrawLineProps {
   lineWidthMax?: number;
   drawOptions: DrawOptions;
-  drawOptionsChange?: (drawOptions: DrawOptions) => void;
+  drawOptionsHandler?: (drawOptions: DrawOptions) => void;
 }
 const DrawLine: React.FC<DrawLineProps> = ({
   lineWidthMax,
   drawOptions,
-  drawOptionsChange
+  drawOptionsHandler
 }) => {
-  const lineWidthChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    drawOptionsChange({ ...drawOptions, lineWidth: +event.target.value });
+  const lineWidthHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    drawOptionsHandler({ ...drawOptions, lineWidth: +event.target.value });
   };
 
-  const colorChange = (color: string) => {
-    drawOptionsChange({ ...drawOptions, strokeStyle: color });
+  const colorHandler = (color: string) => {
+    drawOptionsHandler({ ...drawOptions, strokeStyle: color });
   };
 
   return (
@@ -31,14 +31,14 @@ const DrawLine: React.FC<DrawLineProps> = ({
           min="1"
           max={lineWidthMax}
           value={drawOptions.lineWidth}
-          onChange={lineWidthChange}
+          onChange={lineWidthHandler}
         />
         <span className="cw-draw-line__number">{drawOptions.lineWidth}</span>
       </div>
       <div className="cw-draw-line__controller">
         <ColorPicker
           color={drawOptions.strokeStyle}
-          colorChange={colorChange}
+          colorHandler={colorHandler}
         />
       </div>
     </>
@@ -48,7 +48,7 @@ const DrawLine: React.FC<DrawLineProps> = ({
 DrawLine.defaultProps = {
   lineWidthMax: 30,
   drawOptions: getDefaultDrawOptions(),
-  drawOptionsChange: () => {}
+  drawOptionsHandler: () => {}
 };
 
 export default DrawLine;
