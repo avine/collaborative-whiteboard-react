@@ -1,83 +1,94 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
+import { DrawOptions } from '../../Model';
+import CanvasService from '../../Service';
+import Cut from '../cut/Cut';
+import DrawLine from '../draw-line/DrawLine';
 import Icon from '../icon/Icon';
 import ToolContent from '../tool-content/ToolContent';
 import Tool from '../tool-group/Tool';
 import ToolGroup from '../tool-group/ToolGroup';
 
-type SwitchableType = 'drawLine' | 'cut' | 'guides';
+export interface CanvasToolProps {
+  service: CanvasService;
+  drawOptions: DrawOptions;
+  drawOptionsHandler: (drawOptions: DrawOptions) => void;
+  showGuides: boolean;
+  showGuidesHandler: (showGuides: boolean) => void;
+  showCut: boolean;
+  showCutHandler: (showGuides: boolean) => void;
+}
 
-const CanvasTool = () => {
-  const [active, setActive] = useState<Record<SwitchableType, boolean>>({
-    drawLine: false,
-    cut: false,
-    guides: false
-  });
+const CanvasTool: React.FC<CanvasToolProps> = ({
+  service,
+  drawOptions,
+  drawOptionsHandler,
+  showGuides,
+  showGuidesHandler,
+  showCut,
+  showCutHandler
+}) => {
+  const [showDrawLine, setShowDrawLine] = useState(false);
 
-  const switchActive = (content: SwitchableType) => {
-    const nextActive = { ...active };
-    nextActive[content] = !nextActive[content];
-    setActive(nextActive);
-  };
+  const drawLine = (
+    <ToolContent
+      title="Draw line"
+      dispose={() => setShowDrawLine(!showDrawLine)}
+    >
+      <DrawLine
+        drawOptions={drawOptions}
+        drawOptionsHandler={drawOptionsHandler}
+      />
+    </ToolContent>
+  );
 
-  const contents: Record<string, JSX.Element> = {
-    drawLine: (
-      <ToolContent title="Draw line" dispose={() => switchActive('drawLine')}>
-        Hello world Draw line!
-      </ToolContent>
-    ),
-    cut: (
-      <ToolContent title="Cut" dispose={() => switchActive('cut')}>
-        Hello world Cut!
-      </ToolContent>
-    )
-  };
+  const cut = (
+    <ToolContent title="Cut" dispose={() => showCutHandler(!showCut)}>
+      <Cut service={service} />
+    </ToolContent>
+  );
 
   return (
     <>
       <ToolGroup>
         <Tool
           title="Draw line"
-          active={active.drawLine}
-          clickHandler={() => switchActive('drawLine')}
+          clickHandler={() => setShowDrawLine(!showDrawLine)}
         >
           <Icon icon="drawLine" />
         </Tool>
 
-        <Tool title="Undo" clickHandler={() => {}}>
+        <Tool title="Undo" clickHandler={() => service.undo()}>
           <Icon icon="undo" />
         </Tool>
 
-        <Tool title="Redo" clickHandler={() => {}}>
+        <Tool title="Redo" clickHandler={() => service.redo()}>
           <Icon icon="redo" />
         </Tool>
 
-        <Tool
-          title="Cut"
-          active={active.cut}
-          clickHandler={() => switchActive('cut')}
-        >
+        <Tool title="Cut" clickHandler={() => showCutHandler(!showCut)}>
           <Icon icon="cut" />
         </Tool>
 
-        <Tool title="Undo all" clickHandler={() => {}}>
+        <Tool title="Undo all" clickHandler={() => service.undoAll()}>
           <Icon icon="undoAll" />
         </Tool>
 
         <Tool
           title="Guides"
-          active={active.guides}
-          clickHandler={() => switchActive('guides')}
+          active={showGuides}
+          clickHandler={() => showGuidesHandler(!showGuides)}
         >
           <Icon icon="noGuides" />
         </Tool>
 
-        <Tool title="Redraw" clickHandler={() => {}}>
+        <Tool title="Redraw" clickHandler={() => service.redraw()}>
           <Icon icon="redraw" />
         </Tool>
       </ToolGroup>
 
-      {active.drawLine && contents.drawLine}
-      {active.cut && contents.cut}
+      {showDrawLine ? drawLine : null}
+      {showCut ? cut : null}
     </>
   );
 };
