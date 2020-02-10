@@ -7,5 +7,6 @@
 @import './styles/collaborative-whiteboard.scss';
 
 #root { // FIXME: FOR REACT
-  display: inline;
+  width: inherit;
+  height: inherit;
 }

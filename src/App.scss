@@ -1,6 +1,6 @@
 @import './styles/mixins.scss';
 
-.layout {
+.app__layout {
   z-index: 1;
   display: grid;
   grid-template-columns: auto;
@@ -10,7 +10,7 @@
   text-align: center;
 }
 
-.header {
+.app__header {
   grid-area: header;
   z-index: 2;
   position: relative;
@@ -23,7 +23,7 @@
   line-height: 2.5rem;
 }
 
-.main {
+.app__main {
   grid-area: main;
   z-index: 1;
   position: relative;
@@ -31,7 +31,7 @@
   overflow: auto;
 }
 
-.popup {
+.app__popup {
   z-index: 2;
   position: fixed;
   right: 0;
@@ -44,7 +44,7 @@
   cursor: pointer;
 }
 
-.version {
+.app__version {
   z-index: 3;
   position: fixed;
   right: 0;
@@ -55,20 +55,17 @@
 }
 
 @include themes {
-  .layout {
-    // FIXME: FOR REACT
-    .header {
-      border-bottom: 1px solid map-get($app-theme, header-border-color);
-      background-color: map-get($app-theme, header-background-color);
-    }
+  .app__header {
+    border-bottom: 1px solid map-get($app-theme, header-border-color);
+    background-color: map-get($app-theme, header-background-color);
+  }
 
-    .main {
-      background-color: map-get($app-theme, background-color);
-    }
+  .app__main {
+    background-color: map-get($app-theme, background-color);
+  }
 
-    .popup {
-      border-top: 1px solid map-get($app-theme, header-border-color);
-      background-color: map-get($app-theme, header-background-color);
-    }
+  .app__popup {
+    border-top: 1px solid map-get($app-theme, header-border-color);
+    background-color: map-get($app-theme, header-background-color);
   }
 }

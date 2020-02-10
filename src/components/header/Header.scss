@@ -1,6 +1,6 @@
 @import '../../styles/mixins.scss';
 
-.logo {
+.header__logo {
   padding: 0 0.5rem;
   font-size: 1.5rem;
   box-shadow: 0 1px 0 darken(#558b2f, 5);
@@ -11,7 +11,7 @@
   outline: none;
 }
 
-.menu {
+.header__menu {
   // As flex item
   flex-shrink: 1;
   overflow: hidden;
@@ -20,7 +20,7 @@
   display: flex;
   flex-wrap: nowrap;
 
-  .menu-link { // FIXME: FOR REACT (add weight to this selector using nesting)
+  .header__menu-link { // FIXME: FOR REACT (add weight to this selector using nesting)
     flex-shrink: 1;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -30,21 +30,21 @@
   }
 }
 
-.menu-link--capitalize {
+.header__menu-link--capitalize {
   text-transform: capitalize;
 }
 
-.menu-link-icon {
+.header__menu-link-icon {
   margin-right: 0.33em;
 }
 
-.menu-link-sm {
+.header__menu-link-sm {
   font-size: 0.825em;
 }
 
 @include themes {
-  .header { // FIXME: FOR REACT
-    .menu-link {
+  .header__menu { // FIXME: FOR REACT
+    .header__menu-link {
       color: map-get($app-theme, header-link-color);
       &:hover {
         background-color: rgba(160, 160, 160, 0.1);
@@ -52,7 +52,7 @@
       }
     }
 
-    .menu-link--active {
+    .header__menu-link--active {
       background-color: transparent !important;
       color: map-get($app-theme, header-link-active-color) !important;
     }

@@ -1,55 +1,45 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import './Header.scss';
 import React, { useState } from 'react';
-import Icon from '../../collaborative-whiteboard/components/icon/Icon';
+import { Helmet } from 'react-helmet';
+import themeIcon from './themeIcon';
 
 const Header: React.FC = () => {
   const [theme, setTheme] = useState('light');
-
-  document.documentElement.classList.add(`theme--${theme}`);
-
-  const switchTheme = () => {
-    document.documentElement.classList.remove(`theme--${theme}`);
-    setTheme(theme === 'light' ? 'dark' : 'light');
-  };
+  const switchTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');
 
   return (
     <>
-      <div className="logo">CW</div>
+      <Helmet>
+        <html lang="en" className={`theme--${theme}`} />
+      </Helmet>
 
-      <div className="menu">
-        <a className="menu-link" href="#">
+      <div className="header__logo">CW</div>
+
+      <div className="header__menu">
+        <a className="header__menu-link" href="#">
           Home
         </a>
-        <a className="menu-link" href="#">
+        <a className="header__menu-link" href="#">
           Basic
         </a>
-        <a className="menu-link" href="#">
+        <a className="header__menu-link" href="#">
           Mirror
         </a>
-        <a className="menu-link" href="#">
+        <a className="header__menu-link" href="#">
           Whiteboard
         </a>
       </div>
 
-      <div className="menu">
+      <div className="header__menu">
         <a
           href="#"
-          className="menu-link menu-link--capitalize"
-          onClick={() => {}}
+          className="header__menu-link header__menu-link--capitalize"
+          onClick={switchTheme}
+          onKeyDown={() => {}}
         >
-          <span className="menu-link-sm">
-            <Icon icon="drawLine" />
-          </span>
-          <span
-            role="button"
-            tabIndex={0}
-            className="menu-link-sm"
-            onClick={switchTheme}
-            onKeyDown={() => {}}
-          >
-            {theme}
-          </span>
+          <span className="header__menu-link-icon cw-icon">{themeIcon}</span>
+          <span className="header__menu-link-sm">{theme}</span>
         </a>
       </div>
     </>
