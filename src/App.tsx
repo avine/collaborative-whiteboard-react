@@ -1,53 +1,22 @@
 import './App.scss';
 import './cw/styles/cw.core.scss';
-import React, { useState } from 'react';
-import Canvas from './cw/components/canvas/Canvas';
-import { BroadcastDrawEvents, CanvasSize, DrawEvent } from './cw/Model';
-import {
-  drawLineSerieToLinesMapper,
-  getDefaultCanvasSize,
-  getDefaultDrawOptions
-} from './cw/Operator';
+import React from 'react';
+import Header from './components/header/Header';
+import Whiteboard from './cw/components/whiteboard/Whiteboard2';
 
 const App: React.FC = () => {
-  const [canvasSize, setCanvasSize] = useState<CanvasSize>(
-    getDefaultCanvasSize()
-  );
-
-  const [broadcast, setBroadcast] = useState<BroadcastDrawEvents>();
-
-  const sizeHandler = () => {
-    setCanvasSize({ height: 400, width: 400 });
-  };
-
-  const drawHandler = (drawEvent: DrawEvent) => {
-    setBroadcast({
-      animate: true,
-      events: drawLineSerieToLinesMapper([drawEvent])
-    });
-  };
-
-  const drawOptions = getDefaultDrawOptions();
-
   return (
-    <div className="app">
-      <div className="app__canvas">
-        <Canvas
-          drawOptions={drawOptions}
-          canvasSize={canvasSize}
-          draw={drawHandler}
-        />
-        <Canvas
-          drawDisabled
-          drawOptions={drawOptions}
-          canvasSize={canvasSize}
-          broadcast={broadcast}
-        />
+    <>
+      <div className="layout">
+        <div className="header">
+          <Header />
+        </div>
+        <div className="main">
+          <Whiteboard />
+        </div>
       </div>
-      <button type="button" onClick={sizeHandler}>
-        Change size
-      </button>
-    </div>
+      <div className="version">1.0.1</div>
+    </>
   );
 };
 

@@ -94,6 +94,7 @@ cw-color-picker {
 
 .cw-tool-content {
   // position: relative;
+  z-index: 2; // FIXME: FOR REACT
   position: absolute; // FIXME: FOR REACT
   left: 0; // FIXME: FOR REACT
   top: 0; // FIXME: FOR REACT
@@ -132,6 +133,7 @@ cw-color-picker {
 }
 
 .cw-tool-group {
+  z-index: 2; // FIXME: FOR REACT
   position: absolute; // FIXME: FOR REACT
   left: 0; // FIXME: FOR REACT
   top: 0; // FIXME: FOR REACT

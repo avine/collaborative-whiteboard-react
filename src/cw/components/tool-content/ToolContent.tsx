@@ -26,7 +26,7 @@ const ToolContent: React.FC<ToolContentProps> = ({
           <div
             role="button"
             tabIndex={0}
-            className="button-reset-css cw-tool-content__action"
+            className="cw-tool-content__action"
             onClick={dispose}
             onKeyDown={() => {}}
           >

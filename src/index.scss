@@ -1,45 +1,11 @@
-@import url('~typeface-mali/index.css');
+@import './styles/base.scss';
 
-html,
-body {
-  height: 100%;
-  -webkit-tap-highlight-color: transparent;
+@import './styles/app.scss';
+
+@import './styles/input-range.scss';
+
+@import './styles/collaborative-whiteboard.scss';
+
+#root { // FIXME: FOR REACT
+  display: inline;
 }
-
-body {
-  margin: 0;
-  font-family: 'Mali', cursive;
-}
-
-* {
-  outline: none;
-}
-
-a {
-  &,
-  &:visited {
-    cursor: pointer;
-    text-decoration: none;
-    transition: color 150ms ease;
-  }
-
-  &:hover,
-  &:active,
-  &:focus {
-    text-decoration: underline;
-  }
-}
-
-input,
-option {
-  font-family: inherit;
-}
-
-.button-reset-css { // FIXME: FOR REACT
-  font: inherit;
-  border: inherit;
-  background: inherit;
-  color: inherit;
-}
-
-@import "./input-range";

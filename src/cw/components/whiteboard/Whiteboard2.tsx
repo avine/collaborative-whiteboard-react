@@ -10,9 +10,13 @@ import Canvas from '../canvas/Canvas';
 
 export interface WhiteboardProps {
   fitParentElement?: boolean;
+  dragBounds?: string;
 }
 
-const Whiteboard: React.FC<WhiteboardProps> = ({ fitParentElement }) => {
+const Whiteboard: React.FC<WhiteboardProps> = ({
+  fitParentElement,
+  dragBounds
+}) => {
   const service = useContext(CanvasServiceContext);
 
   const [historyCut, setHistoryCut] = useState<BroadcastDrawEvents>();
@@ -52,14 +56,6 @@ const Whiteboard: React.FC<WhiteboardProps> = ({ fitParentElement }) => {
 
   return (
     <>
-      <CanvasTool
-        drawOptions={drawOptions}
-        drawOptionsHandler={setDrawOptions}
-        showGuides={showGuides}
-        showGuidesHandler={setShowGuides}
-        showCut={showCut}
-        showCutHandler={setShowCut}
-      />
       <div className="cw-whiteboard__canvas" ref={canvasContainer}>
         <Canvas
           className="cw-whiteboard__canvas-draw"
@@ -80,6 +76,15 @@ const Whiteboard: React.FC<WhiteboardProps> = ({ fitParentElement }) => {
           />
         )}
       </div>
+      <CanvasTool
+        drawOptions={drawOptions}
+        drawOptionsHandler={setDrawOptions}
+        showGuides={showGuides}
+        showGuidesHandler={setShowGuides}
+        showCut={showCut}
+        showCutHandler={setShowCut}
+        dragBounds={dragBounds}
+      />
     </>
   );
 };

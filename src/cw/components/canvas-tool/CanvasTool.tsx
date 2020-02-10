@@ -16,6 +16,7 @@ export interface CanvasToolProps {
   showGuidesHandler: (showGuides: boolean) => void;
   showCut: boolean;
   showCutHandler: (showGuides: boolean) => void;
+  dragBounds?: string;
 }
 
 const CanvasTool: React.FC<CanvasToolProps> = ({
@@ -24,7 +25,8 @@ const CanvasTool: React.FC<CanvasToolProps> = ({
   showGuides,
   showGuidesHandler,
   showCut,
-  showCutHandler
+  showCutHandler,
+  dragBounds
 }) => {
   const service = useContext(CanvasServiceContext);
 
@@ -34,6 +36,7 @@ const CanvasTool: React.FC<CanvasToolProps> = ({
     <ToolContent
       title="Draw line"
       dispose={() => setShowDrawLine(!showDrawLine)}
+      dragBounds={dragBounds}
     >
       <DrawLine
         drawOptions={drawOptions}
@@ -43,14 +46,18 @@ const CanvasTool: React.FC<CanvasToolProps> = ({
   );
 
   const cut = (
-    <ToolContent title="Cut" dispose={() => showCutHandler(!showCut)}>
+    <ToolContent
+      title="Cut"
+      dispose={() => showCutHandler(!showCut)}
+      dragBounds={dragBounds}
+    >
       <Cut />
     </ToolContent>
   );
 
   return (
     <>
-      <ToolGroup>
+      <ToolGroup dragBounds={dragBounds}>
         <Tool
           title="Draw line"
           clickHandler={() => setShowDrawLine(!showDrawLine)}
