@@ -11,8 +11,6 @@ import ToolContent from '../tool-content/ToolContent';
 import Tool from '../tool-group/Tool';
 import ToolGroup from '../tool-group/ToolGroup';
 
-// FIXME: Missing the "cw-whiteboard" css (because in React the component itself is NOT a DOM element)
-
 export interface WhiteboardProps {
   fitParentElement?: boolean;
 }

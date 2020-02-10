@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import './Header.scss';
 import React, { useState } from 'react';
-import Icon from '../../cw/components/icon/Icon';
+import Icon from '../../collaborative-whiteboard/components/icon/Icon';
 
 const Header: React.FC = () => {
   const [theme, setTheme] = useState('light');

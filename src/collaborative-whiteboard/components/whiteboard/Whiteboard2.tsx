@@ -6,8 +6,6 @@ import CanvasServiceContext from '../../ServiceContext';
 import CanvasTool from '../canvas-tool/CanvasTool';
 import Canvas from '../canvas/Canvas';
 
-// FIXME: Missing the "cw-whiteboard" css (because in React the component itself is NOT a DOM element)
-
 export interface WhiteboardProps {
   fitParentElement?: boolean;
   dragBounds?: string;

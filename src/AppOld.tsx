@@ -1,13 +1,17 @@
 import './AppOld.scss';
-import './cw/styles/cw.core.scss';
+import './collaborative-whiteboard/styles/cw.core.scss';
 import React, { useState } from 'react';
-import Canvas from './cw/components/canvas/Canvas';
-import { BroadcastDrawEvents, CanvasSize, DrawEvent } from './cw/Model';
+import Canvas from './collaborative-whiteboard/components/canvas/Canvas';
+import {
+  BroadcastDrawEvents,
+  CanvasSize,
+  DrawEvent
+} from './collaborative-whiteboard/Model';
 import {
   drawLineSerieToLinesMapper,
   getDefaultCanvasSize,
   getDefaultDrawOptions
-} from './cw/Operator';
+} from './collaborative-whiteboard/Operator';
 
 const App: React.FC = () => {
   const [canvasSize, setCanvasSize] = useState<CanvasSize>(

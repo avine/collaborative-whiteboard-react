@@ -1,8 +1,8 @@
 import './App.scss';
-import './cw/styles/cw.core.scss';
+import './collaborative-whiteboard/styles/cw.core.scss';
 import React from 'react';
+import Whiteboard from './collaborative-whiteboard/components/whiteboard/Whiteboard2';
 import Header from './components/header/Header';
-import Whiteboard from './cw/components/whiteboard/Whiteboard2';
 
 const App: React.FC = () => {
   return (

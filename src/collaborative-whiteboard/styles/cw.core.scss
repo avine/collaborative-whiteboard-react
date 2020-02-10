@@ -16,9 +16,11 @@
     linear-gradient(90deg, $cw-canvas-guides-color 0, transparent 1px);
 }
 
-cw-color-picker {
+/*
+cw-color-picker { // FIXME: FOR REACT (useless)
   display: block;
 }
+*/
 
 .cw-color-picker {
   position: relative;
@@ -183,10 +185,12 @@ cw-color-picker {
   }
 }
 
-cw-whiteboard {
+/*
+cw-whiteboard { // FIXME: FOR REACT (useless)
   display: flex;
   overflow: auto;
 }
+*/
 
 .cw-whiteboard__canvas {
   flex-grow: 0;
