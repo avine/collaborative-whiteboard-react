@@ -1,9 +1,9 @@
+/* eslint-disable class-methods-use-this */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/sort-comp */
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { createRef, MouseEvent, TouchEvent } from 'react';
-
 import {
   BroadcastDrawEvents,
   CanvasLine,
@@ -33,7 +33,7 @@ export interface CanvasProps {
   draw?: (drawEvent: DrawEvent) => void;
 }
 
-export default class Canvas extends React.Component<CanvasProps> {
+class Canvas extends React.Component<CanvasProps> {
   // eslint-disable-next-line react/static-property-placement
   static defaultProps: CanvasProps = {
     canvasSize: getDefaultCanvasSize(),
@@ -177,7 +177,6 @@ export default class Canvas extends React.Component<CanvasProps> {
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this
   private flushCount(remain: number, total: number) {
     // Let's do some easing!
     const count = Math.round(Math.sin((remain / total) * Math.PI) * 9) + 1;
@@ -263,7 +262,6 @@ export default class Canvas extends React.Component<CanvasProps> {
   /**
    * @returns The number of touches for touch event or 0 for mouse event
    */
-  // eslint-disable-next-line class-methods-use-this
   private touchEventHandler(e: CanvasEvent): number {
     const isTouchEvent =
       e.type === 'touchstart' ||
@@ -363,3 +361,5 @@ export default class Canvas extends React.Component<CanvasProps> {
     );
   }
 }
+
+export default Canvas;

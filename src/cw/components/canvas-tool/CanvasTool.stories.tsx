@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-
-import CanvasTool from './CanvasTool';
 import { getDefaultDrawOptions } from '../../Operator';
-import CanvasService from '../../Service';
+import CanvasTool from './CanvasTool';
 
 export default {
   title: 'CanvasTool',
@@ -10,14 +8,12 @@ export default {
 };
 
 export const Default = () => {
-  const [service] = useState(new CanvasService());
   const [drawOptions, setDrawOptions] = useState(getDefaultDrawOptions());
   const [showCut, setShowCut] = useState(false);
   const [showGuides, setShowGuides] = useState(true);
 
   return (
     <CanvasTool
-      service={service}
       drawOptions={drawOptions}
       drawOptionsHandler={setDrawOptions}
       showCut={showCut}

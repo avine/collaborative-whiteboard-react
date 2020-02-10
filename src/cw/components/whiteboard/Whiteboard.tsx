@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { BroadcastDrawEvents, DrawEvent } from '../../Model';
 import { getDefaultCanvasSize, getDefaultDrawOptions } from '../../Operator';
-import CanvasService from '../../Service';
+import CanvasServiceContext from '../../ServiceContext';
 import Canvas from '../canvas/Canvas';
 import Cut from '../cut/Cut';
 import DrawLine from '../draw-line/DrawLine';
@@ -18,7 +18,8 @@ export interface WhiteboardProps {
 }
 
 const Whiteboard: React.FC<WhiteboardProps> = ({ fitParentElement }) => {
-  const [service] = useState(new CanvasService());
+  const service = useContext(CanvasServiceContext);
+
   const [historyCut, setHistoryCut] = useState<BroadcastDrawEvents>();
 
   const [canvasSize, setCanvasSize] = useState(getDefaultCanvasSize());
@@ -66,7 +67,7 @@ const Whiteboard: React.FC<WhiteboardProps> = ({ fitParentElement }) => {
 
   const cut = (
     <ToolContent title="Cut" dispose={() => setShowCut(!showCut)}>
-      <Cut service={service} />
+      <Cut />
     </ToolContent>
   );
 

@@ -10,62 +10,50 @@ export default {
 };
 
 export const Default = () => {
-  const [active, setActive] = useState({
-    drawLine: false,
-    undo: false,
-    redo: false,
-    guides: false
-  });
+  const [showDrawLine, setShowDrawLine] = useState(false);
+  const [showGuides, setShowGuides] = useState(true);
 
-  const switchActive = (content: 'drawLine' | 'undo' | 'redo' | 'guides') => {
-    const a = { ...active };
-    a[content] = !a[content];
-    setActive(a);
-  };
-
-  const contents: Record<string, JSX.Element> = {
-    drawLine: (
-      <ToolContent title="Draw line" dispose={() => switchActive('drawLine')}>
-        Hello world Draw line!
-      </ToolContent>
-    ),
-    undo: (
-      <ToolContent title="Undo" dispose={() => switchActive('undo')}>
-        Hello world Undo!
-      </ToolContent>
-    )
-  };
+  const drawLine = (
+    <ToolContent
+      title="Draw line"
+      dispose={() => setShowDrawLine(!showDrawLine)}
+    >
+      Draw line tool...
+    </ToolContent>
+  );
 
   return (
     <>
       <ToolGroup>
         <Tool
           title="Draw line"
-          active={active.drawLine}
-          clickHandler={() => switchActive('drawLine')}
+          active={showDrawLine}
+          clickHandler={() => setShowDrawLine(!showDrawLine)}
         >
           <Icon icon="drawLine" />
         </Tool>
-        <Tool
-          title="Undo"
-          active={active.undo}
-          clickHandler={() => switchActive('undo')}
-        >
+
+        <Tool title="Undo">
           <Icon icon="undo" />
         </Tool>
-        <Tool title="Redo" active={active.redo} clickHandler={() => {}}>
+
+        <Tool title="Redo">
           <Icon icon="redo" />
         </Tool>
+
+        <Tool title="Undo all">
+          <Icon icon="undoAll" />
+        </Tool>
+
         <Tool
           title="Guides"
-          active={active.guides}
-          clickHandler={() => switchActive('guides')}
+          active={showGuides}
+          clickHandler={() => setShowGuides(!showGuides)}
         >
           <Icon icon="noGuides" />
         </Tool>
       </ToolGroup>
-      {active.drawLine ? contents.drawLine : null}
-      {active.undo ? contents.undo : null}
+      {showDrawLine ? drawLine : null}
     </>
   );
 };

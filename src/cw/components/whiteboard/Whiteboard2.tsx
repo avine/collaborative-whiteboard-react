@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { BroadcastDrawEvents, DrawEvent } from '../../Model';
 import { getDefaultCanvasSize, getDefaultDrawOptions } from '../../Operator';
-import CanvasService from '../../Service';
-import Canvas from '../canvas/Canvas';
+import CanvasServiceContext from '../../ServiceContext';
 import CanvasTool from '../canvas-tool/CanvasTool';
+import Canvas from '../canvas/Canvas';
 
 // FIXME: Missing the "cw-whiteboard" css (because in React the component itself is NOT a DOM element)
 
@@ -13,7 +13,8 @@ export interface WhiteboardProps {
 }
 
 const Whiteboard: React.FC<WhiteboardProps> = ({ fitParentElement }) => {
-  const [service] = useState(new CanvasService());
+  const service = useContext(CanvasServiceContext);
+
   const [historyCut, setHistoryCut] = useState<BroadcastDrawEvents>();
 
   const [canvasSize, setCanvasSize] = useState(getDefaultCanvasSize());
@@ -52,7 +53,6 @@ const Whiteboard: React.FC<WhiteboardProps> = ({ fitParentElement }) => {
   return (
     <>
       <CanvasTool
-        service={service}
         drawOptions={drawOptions}
         drawOptionsHandler={setDrawOptions}
         showGuides={showGuides}

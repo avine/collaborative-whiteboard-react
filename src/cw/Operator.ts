@@ -33,6 +33,8 @@ export const getDefaultColors = () => [
 
 export const defaultColor = '#29B6F6';
 
+export const defaultLineWidthMax = 30;
+
 export const getDefaultCanvasSize = (): CanvasSize => ({
   width: 300,
   height: 300

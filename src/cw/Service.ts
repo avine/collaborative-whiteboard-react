@@ -1,6 +1,6 @@
+/* eslint-disable class-methods-use-this */
 import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
 import { first, map } from 'rxjs/operators';
-
 import {
   BroadcastDrawEvents,
   CutRange,
@@ -16,7 +16,7 @@ import {
   normalizeCutRange
 } from './Operator';
 
-export default class CanvasService {
+class CanvasService {
   private historyMap = new Map<string, DrawEvent>();
 
   private historyRedo: DrawEvent[][] = [];
@@ -180,7 +180,6 @@ export default class CanvasService {
   //
   // Note that since the whiteboard is collaborative, the clear event should NOT
   // be broadcast through the network, otherwise all users' events will be deleted.
-  // eslint-disable-next-line class-methods-use-this
   private normalizeEvents(events: DrawEvent[]) {
     return events.map(event =>
       event.type === 'clear' ? getClearEvent() : event
@@ -277,3 +276,5 @@ export default class CanvasService {
     return range;
   }
 }
+
+export default CanvasService;

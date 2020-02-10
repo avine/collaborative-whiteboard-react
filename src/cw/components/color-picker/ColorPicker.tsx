@@ -31,7 +31,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
         elements.push(
           <span
             role="button"
-            tabIndex={0}
+            tabIndex={index}
             key={clr}
             style={{ backgroundColor: clr }}
             className={className(clr)}

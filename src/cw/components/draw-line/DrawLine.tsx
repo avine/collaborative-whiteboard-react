@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { DrawOptions } from '../../Model';
-import { getDefaultDrawOptions } from '../../Operator';
+import { getDefaultDrawOptions, defaultLineWidthMax } from '../../Operator';
 import ColorPicker from '../color-picker/ColorPicker';
 
 export interface DrawLineProps {
@@ -46,7 +46,7 @@ const DrawLine: React.FC<DrawLineProps> = ({
 };
 
 DrawLine.defaultProps = {
-  lineWidthMax: 30,
+  lineWidthMax: defaultLineWidthMax,
   drawOptions: getDefaultDrawOptions(),
   drawOptionsHandler: () => {}
 };

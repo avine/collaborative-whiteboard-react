@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { DrawOptions } from '../../Model';
-import CanvasService from '../../Service';
+import CanvasServiceContext from '../../ServiceContext';
 import Cut from '../cut/Cut';
 import DrawLine from '../draw-line/DrawLine';
 import Icon from '../icon/Icon';
@@ -10,7 +10,6 @@ import Tool from '../tool-group/Tool';
 import ToolGroup from '../tool-group/ToolGroup';
 
 export interface CanvasToolProps {
-  service: CanvasService;
   drawOptions: DrawOptions;
   drawOptionsHandler: (drawOptions: DrawOptions) => void;
   showGuides: boolean;
@@ -20,7 +19,6 @@ export interface CanvasToolProps {
 }
 
 const CanvasTool: React.FC<CanvasToolProps> = ({
-  service,
   drawOptions,
   drawOptionsHandler,
   showGuides,
@@ -28,6 +26,8 @@ const CanvasTool: React.FC<CanvasToolProps> = ({
   showCut,
   showCutHandler
 }) => {
+  const service = useContext(CanvasServiceContext);
+
   const [showDrawLine, setShowDrawLine] = useState(false);
 
   const drawLine = (
@@ -44,7 +44,7 @@ const CanvasTool: React.FC<CanvasToolProps> = ({
 
   const cut = (
     <ToolContent title="Cut" dispose={() => showCutHandler(!showCut)}>
-      <Cut service={service} />
+      <Cut />
     </ToolContent>
   );
 
