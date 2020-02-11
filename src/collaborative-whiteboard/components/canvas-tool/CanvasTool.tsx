@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useContext, useState } from 'react';
-import { DrawOptions } from '../../model';
-import CwServiceContext from '../../serviceContext';
+import { DrawOptions } from '../../models';
+import CwServiceContext from '../../servicesContext';
 import Cut from '../cut/Cut';
 import DrawLine from '../draw-line/DrawLine';
 import Icon from '../icon/Icon';

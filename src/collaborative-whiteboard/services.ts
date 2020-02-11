@@ -8,13 +8,13 @@ import {
   DrawEvent,
   DrawTransport,
   Owner
-} from './model';
+} from './models';
 import {
   broadcastDrawEventsMapper,
   getClearEvent,
   getHash,
   normalizeCutRange
-} from './operator';
+} from './operators';
 
 class CwService {
   private historyMap = new Map<string, DrawEvent>();

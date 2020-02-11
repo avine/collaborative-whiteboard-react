@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useContext, useEffect, useState } from 'react';
-import { CutRange } from '../../model';
-import CwServiceContext from '../../serviceContext';
+import { CutRange } from '../../models';
+import CwServiceContext from '../../servicesContext';
 
 export interface CutProps {}
 

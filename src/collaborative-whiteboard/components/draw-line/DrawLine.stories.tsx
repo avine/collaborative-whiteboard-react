@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getDefaultDrawOptions } from '../../operator';
+import { getDefaultDrawOptions } from '../../operators';
 import DrawLine from './DrawLine';
 
 export default {

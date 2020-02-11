@@ -8,7 +8,7 @@ import {
   DrawClear,
   DrawEvent,
   DrawOptions
-} from './model';
+} from './models';
 
 export const getDefaultColors = () => [
   '#EF5350',

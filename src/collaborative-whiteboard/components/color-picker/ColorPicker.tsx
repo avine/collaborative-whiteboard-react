@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import classNames from 'classnames';
 import React from 'react';
-import { getDefaultColors, defaultColor } from '../../operator';
+import { getDefaultColors, defaultColor } from '../../operators';
 
 export interface ColorPickerProps {
   colors?: string[];

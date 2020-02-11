@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { BroadcastDrawEvents, DrawEvent } from '../../model';
-import { getDefaultCanvasSize, getDefaultDrawOptions } from '../../operator';
-import CwServiceContext from '../../serviceContext';
+import { BroadcastDrawEvents, DrawEvent } from '../../models';
+import { getDefaultCanvasSize, getDefaultDrawOptions } from '../../operators';
+import CwServiceContext from '../../servicesContext';
 import Canvas from '../canvas/Canvas';
 import Cut from '../cut/Cut';
 import DrawLine from '../draw-line/DrawLine';

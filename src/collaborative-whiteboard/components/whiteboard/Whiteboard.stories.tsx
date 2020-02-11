@@ -1,5 +1,5 @@
 import React from 'react';
-import CwServiceContext, { getCwService } from '../../serviceContext';
+import CwServiceContext, { getCwService } from '../../servicesContext';
 import Whiteboard from './Whiteboard';
 import Whiteboard2 from './Whiteboard2';
 
