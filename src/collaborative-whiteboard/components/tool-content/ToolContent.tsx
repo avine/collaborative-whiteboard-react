@@ -7,16 +7,25 @@ export interface ToolContentProps {
   title: string;
   dispose: () => void;
   dragBounds?: string;
+  dragPosition?: { x: number; y: number };
+  dragPositionHandler?: (position: { x: number; y: number }) => void;
 }
 
 const ToolContent: React.FC<ToolContentProps> = ({
   title,
   dispose,
   dragBounds,
+  dragPosition,
+  dragPositionHandler,
   children
 }) => {
   return createPortal(
-    <Draggable handle=".cw-tool-content__action--drag" bounds={dragBounds}>
+    <Draggable
+      handle=".cw-tool-content__action--drag"
+      bounds={dragBounds}
+      position={dragPosition}
+      onStop={(e, { x, y }) => dragPositionHandler({ x, y })}
+    >
       <div className="cw-tool-content">
         <div className="cw-tool-content__header">
           <div className="cw-tool-content__action cw-tool-content__action--drag">
@@ -41,7 +50,9 @@ const ToolContent: React.FC<ToolContentProps> = ({
 };
 
 ToolContent.defaultProps = {
-  dragBounds: 'body'
+  dragBounds: 'body',
+  dragPosition: { x: 0, y: 0 },
+  dragPositionHandler: () => {}
 };
 
 export default ToolContent;

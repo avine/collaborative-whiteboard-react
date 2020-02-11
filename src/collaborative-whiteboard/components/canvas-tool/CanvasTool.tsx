@@ -32,11 +32,16 @@ const CanvasTool: React.FC<CanvasToolProps> = ({
 
   const [showDrawLine, setShowDrawLine] = useState(false);
 
+  const [drawLinePosition, setDrawLinePosition] = useState({ x: 0, y: 0 });
+  const [cutPosition, setCutPosition] = useState({ x: 0, y: 0 });
+
   const drawLine = (
     <ToolContent
       title="Draw line"
       dispose={() => setShowDrawLine(!showDrawLine)}
       dragBounds={dragBounds}
+      dragPosition={drawLinePosition}
+      dragPositionHandler={setDrawLinePosition}
     >
       <DrawLine
         drawOptions={drawOptions}
@@ -50,6 +55,8 @@ const CanvasTool: React.FC<CanvasToolProps> = ({
       title="Cut"
       dispose={() => showCutHandler(!showCut)}
       dragBounds={dragBounds}
+      dragPosition={cutPosition}
+      dragPositionHandler={setCutPosition}
     >
       <Cut />
     </ToolContent>
