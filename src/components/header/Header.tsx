@@ -3,7 +3,8 @@ import './Header.scss';
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { NavLink } from 'react-router-dom';
-import themeIcon from './themeIcon';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTint } from '@fortawesome/free-solid-svg-icons';
 
 const Header: React.FC = () => {
   const [theme, setTheme] = useState('light');
@@ -56,7 +57,7 @@ const Header: React.FC = () => {
           onClick={switchTheme}
           onKeyDown={() => {}}
         >
-          <span className="header__menu-link-icon cw-icon">{themeIcon}</span>
+          <FontAwesomeIcon className="header__menu-link-icon" icon={faTint} />
           <span className="header__menu-link-sm">{theme}</span>
         </a>
       </div>
