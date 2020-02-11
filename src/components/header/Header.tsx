@@ -2,7 +2,7 @@
 import './Header.scss';
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import themeIcon from './themeIcon';
 
 const Header: React.FC = () => {
@@ -18,18 +18,35 @@ const Header: React.FC = () => {
       <div className="header__logo">CW</div>
 
       <div className="header__menu">
-        <Link className="header__menu-link" to="/">
+        <NavLink
+          exact
+          className="header__menu-link"
+          activeClassName="header__menu-link--active"
+          to="/"
+        >
           Home
-        </Link>
-        <Link className="header__menu-link" to="/basic">
+        </NavLink>
+        <NavLink
+          className="header__menu-link"
+          activeClassName="header__menu-link--active"
+          to="/basic"
+        >
           Basic
-        </Link>
-        <Link className="header__menu-link" to="/mirror">
+        </NavLink>
+        <NavLink
+          className="header__menu-link"
+          activeClassName="header__menu-link--active"
+          to="/mirror"
+        >
           Mirror
-        </Link>
-        <Link className="header__menu-link" to="/whiteboard">
+        </NavLink>
+        <NavLink
+          className="header__menu-link"
+          activeClassName="header__menu-link--active"
+          to="/whiteboard"
+        >
           Whiteboard
-        </Link>
+        </NavLink>
       </div>
 
       <div className="header__menu">

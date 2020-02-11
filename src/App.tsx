@@ -14,6 +14,9 @@ const App: React.FC = () => {
         </div>
         <div className="app__main">
           <Switch>
+            <Route exact path="/">
+              <div>Home</div>
+            </Route>
             <Route path="/basic">
               <div>Basic</div>
             </Route>
@@ -22,9 +25,6 @@ const App: React.FC = () => {
             </Route>
             <Route path="/whiteboard">
               <Whiteboard />
-            </Route>
-            <Route path="/">
-              <div>Home</div>
             </Route>
           </Switch>
         </div>

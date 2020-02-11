@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 import React, { useContext, useEffect, useState } from 'react';
-import { CutRange } from '../../Model';
-import CanvasServiceContext from '../../ServiceContext';
+import { CutRange } from '../../model';
+import CwServiceContext from '../../serviceContext';
 
 export interface CutProps {}
 
 const Cut: React.FC<CutProps> = () => {
-  const service = useContext(CanvasServiceContext);
+  const service = useContext(CwServiceContext);
 
   const [lastIndex, setLastIndex] = useState(0);
   const [index, setIndex] = useState(0);

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { defaultColor, getDefaultColors } from '../../Operator';
+import { defaultColor, getDefaultColors } from '../../operator';
 import ColorPicker from './ColorPicker';
 
 export default {

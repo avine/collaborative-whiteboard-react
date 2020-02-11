@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { DrawOptions } from '../../Model';
-import { getDefaultDrawOptions, defaultLineWidthMax } from '../../Operator';
+import { DrawOptions } from '../../model';
+import { getDefaultDrawOptions, defaultLineWidthMax } from '../../operator';
 import ColorPicker from '../color-picker/ColorPicker';
 
 export interface DrawLineProps {

@@ -6,12 +6,12 @@ import {
   BroadcastDrawEvents,
   CanvasSize,
   DrawEvent
-} from './collaborative-whiteboard/Model';
+} from './collaborative-whiteboard/model';
 import {
   drawLineSerieToLinesMapper,
   getDefaultCanvasSize,
   getDefaultDrawOptions
-} from './collaborative-whiteboard/Operator';
+} from './collaborative-whiteboard/operator';
 
 const App: React.FC = () => {
   const [canvasSize, setCanvasSize] = useState<CanvasSize>(

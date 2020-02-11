@@ -1,5 +1,5 @@
 import React from 'react';
-import CanvasServiceContext, { getCanvasService } from '../../ServiceContext';
+import CwServiceContext, { getCwService } from '../../serviceContext';
 import Whiteboard from './Whiteboard';
 import Whiteboard2 from './Whiteboard2';
 
@@ -15,13 +15,13 @@ export const Default = () => {
 export const Default2 = () => {
   return (
     <>
-      <CanvasServiceContext.Provider value={getCanvasService()}>
+      <CwServiceContext.Provider value={getCwService()}>
         <Whiteboard2 />
-      </CanvasServiceContext.Provider>
+      </CwServiceContext.Provider>
 
-      <CanvasServiceContext.Provider value={getCanvasService()}>
+      <CwServiceContext.Provider value={getCwService()}>
         <Whiteboard2 />
-      </CanvasServiceContext.Provider>
+      </CwServiceContext.Provider>
     </>
   );
 };

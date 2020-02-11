@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { BroadcastDrawEvents, DrawEvent } from '../../Model';
-import { getDefaultCanvasSize, getDefaultDrawOptions } from '../../Operator';
-import CanvasServiceContext from '../../ServiceContext';
+import { BroadcastDrawEvents, DrawEvent } from '../../model';
+import { getDefaultCanvasSize, getDefaultDrawOptions } from '../../operator';
+import CwServiceContext from '../../serviceContext';
 import CanvasTool from '../canvas-tool/CanvasTool';
 import Canvas from '../canvas/Canvas';
 
@@ -15,7 +15,7 @@ const Whiteboard: React.FC<WhiteboardProps> = ({
   fitParentElement,
   dragBounds
 }) => {
-  const service = useContext(CanvasServiceContext);
+  const service = useContext(CwServiceContext);
 
   const [historyCut, setHistoryCut] = useState<BroadcastDrawEvents>();
 

@@ -1,8 +1,8 @@
 import { createContext } from 'react';
-import CanvasService from './Service';
+import CwService from './service';
 
-const CanvasServiceContext = createContext(new CanvasService());
+const CwServiceContext = createContext(new CwService());
 
-export default CanvasServiceContext;
+export default CwServiceContext;
 
-export const getCanvasService = () => new CanvasService();
+export const getCwService = () => new CwService();

@@ -8,15 +8,15 @@ import {
   DrawEvent,
   DrawTransport,
   Owner
-} from './Model';
+} from './model';
 import {
   broadcastDrawEventsMapper,
   getClearEvent,
   getHash,
   normalizeCutRange
-} from './Operator';
+} from './operator';
 
-class CanvasService {
+class CwService {
   private historyMap = new Map<string, DrawEvent>();
 
   private historyRedo: DrawEvent[][] = [];
@@ -277,4 +277,4 @@ class CanvasService {
   }
 }
 
-export default CanvasService;
+export default CwService;
