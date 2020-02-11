@@ -7,10 +7,17 @@ import Tool from './Tool';
 
 export interface ToolGroupProps {
   dragBounds?: string;
+  dragPosition?: { x: number; y: number };
+  dragPositionHandler?: (position: { x: number; y: number }) => void;
 }
 
-const ToolGroup: React.FC<ToolGroupProps> = ({ dragBounds, children }) => {
-  const [layoutVertical, setLayoutVertical] = useState(false);
+const ToolGroup: React.FC<ToolGroupProps> = ({
+  dragBounds,
+  dragPosition,
+  dragPositionHandler,
+  children
+}) => {
+  const [layoutVertical, setLayoutVertical] = useState(true);
   const [collapse, setCollapse] = useState(false);
 
   const className = classNames('cw-tool-group', {
@@ -18,7 +25,12 @@ const ToolGroup: React.FC<ToolGroupProps> = ({ dragBounds, children }) => {
   });
 
   return createPortal(
-    <Draggable handle=".cw-tool-group__action--drag" bounds={dragBounds}>
+    <Draggable
+      handle=".cw-tool-group__action--drag"
+      bounds={dragBounds}
+      position={dragPosition}
+      onStop={(e, { x, y }) => dragPositionHandler({ x, y })}
+    >
       <div className={className}>
         <Tool
           title="Drag / Change direction"
@@ -42,7 +54,8 @@ const ToolGroup: React.FC<ToolGroupProps> = ({ dragBounds, children }) => {
 };
 
 ToolGroup.defaultProps = {
-  dragBounds: 'body'
+  dragBounds: 'body',
+  dragPositionHandler: () => {}
 };
 
 export default ToolGroup;

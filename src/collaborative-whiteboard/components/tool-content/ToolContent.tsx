@@ -51,7 +51,6 @@ const ToolContent: React.FC<ToolContentProps> = ({
 
 ToolContent.defaultProps = {
   dragBounds: 'body',
-  dragPosition: { x: 0, y: 0 },
   dragPositionHandler: () => {}
 };
 
