@@ -32,15 +32,13 @@ const ToolContent: React.FC<ToolContentProps> = ({
             <Icon icon="drag" />
           </div>
           <span className="cw-tool-content__title">{title}</span>
-          <div
-            role="button"
-            tabIndex={0}
-            className="cw-tool-content__action"
+          <button
+            type="button"
+            className="cw-buttonless cw-tool-content__action"
             onClick={dispose}
-            onKeyDown={() => {}}
           >
             <Icon icon="dispose" />
-          </div>
+          </button>
         </div>
         <div className="cw-tool-content__content">{children}</div>
       </div>

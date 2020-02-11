@@ -18,7 +18,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
   const breakIndex = Math.round(colors.length / 3);
 
   const className = (clr: string) =>
-    classNames('cw-color-picker', {
+    classNames('cw-buttonless', 'cw-color-picker', {
       'cw-color-picker--selected': clr === color
     });
 
@@ -29,14 +29,12 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
           elements.push(<br key={`${clr}_br`} />);
         }
         elements.push(
-          <span
-            role="button"
-            tabIndex={index}
+          <button
             key={clr}
+            type="button"
             style={{ backgroundColor: clr }}
             className={className(clr)}
             onClick={() => colorHandler(clr)}
-            onKeyDown={() => {}}
           />
         );
         return elements;

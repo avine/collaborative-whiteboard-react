@@ -18,22 +18,25 @@ const Tool: React.FC<ToolProps> = ({
   doubleClickHandler,
   children
 }) => {
-  const className = classNames('cw-tool-group__action', classNameModifier, {
-    'cw-tool-group__action--active': active
-  });
+  const className = classNames(
+    'cw-buttonless',
+    'cw-tool-group__action',
+    classNameModifier,
+    {
+      'cw-tool-group__action--active': active
+    }
+  );
 
   return (
-    <div
-      role="button"
-      tabIndex={0}
+    <button
+      type="button"
       title={title}
       className={className}
       onClick={clickHandler}
-      onKeyDown={() => {}}
       onDoubleClick={doubleClickHandler}
     >
       {children}
-    </div>
+    </button>
   );
 };
 
