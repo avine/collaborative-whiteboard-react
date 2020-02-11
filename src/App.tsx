@@ -4,6 +4,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Whiteboard from './collaborative-whiteboard/components/whiteboard/Whiteboard2';
 import Header from './components/header/Header';
+import Home from './components/pages/home/Home';
 
 const App: React.FC = () => {
   return (
@@ -15,7 +16,7 @@ const App: React.FC = () => {
         <div className="app__main">
           <Switch>
             <Route exact path="/">
-              <div>Home</div>
+              <Home />
             </Route>
             <Route path="/basic">
               <div>Basic</div>
