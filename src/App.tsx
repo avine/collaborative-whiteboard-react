@@ -4,7 +4,9 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Whiteboard from './collaborative-whiteboard/components/whiteboard/Whiteboard2';
 import Header from './components/header/Header';
+import Basic from './components/pages/basic/Basic';
 import Home from './components/pages/home/Home';
+import Mirror from './components/pages/mirror/Mirror';
 
 const App: React.FC = () => {
   return (
@@ -19,10 +21,10 @@ const App: React.FC = () => {
               <Home />
             </Route>
             <Route path="/basic">
-              <div>Basic</div>
+              <Basic />
             </Route>
             <Route path="/mirror">
-              <div>Mirror</div>
+              <Mirror />
             </Route>
             <Route path="/whiteboard">
               <Whiteboard />
