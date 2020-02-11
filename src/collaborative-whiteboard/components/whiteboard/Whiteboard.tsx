@@ -71,6 +71,26 @@ const Whiteboard: React.FC<WhiteboardProps> = ({ fitParentElement }) => {
 
   return (
     <>
+      <div className="cw-whiteboard__canvas" ref={canvasContainer}>
+        <Canvas
+          className="cw-whiteboard__canvas-draw"
+          drawOptions={drawOptions}
+          canvasSize={canvasSize}
+          showGuides={showGuides}
+          broadcast={broadcast}
+          draw={drawHandler}
+        />
+        {showCut && (
+          <Canvas
+            className="cw-whiteboard__canvas-cut"
+            drawOptions={drawOptions}
+            canvasSize={canvasSize}
+            showGuides={!showGuides}
+            drawDisabled
+            broadcast={historyCut}
+          />
+        )}
+      </div>
       <ToolGroup>
         <Tool
           title="Draw line"
@@ -107,30 +127,8 @@ const Whiteboard: React.FC<WhiteboardProps> = ({ fitParentElement }) => {
           <Icon icon="redraw" />
         </Tool>
       </ToolGroup>
-
       {showDrawLine ? drawLine : null}
       {showCut ? cut : null}
-
-      <div className="cw-whiteboard__canvas" ref={canvasContainer}>
-        <Canvas
-          className="cw-whiteboard__canvas-draw"
-          drawOptions={drawOptions}
-          canvasSize={canvasSize}
-          showGuides={showGuides}
-          broadcast={broadcast}
-          draw={drawHandler}
-        />
-        {showCut && (
-          <Canvas
-            className="cw-whiteboard__canvas-cut"
-            drawOptions={drawOptions}
-            canvasSize={canvasSize}
-            showGuides={!showGuides}
-            drawDisabled
-            broadcast={historyCut}
-          />
-        )}
-      </div>
     </>
   );
 };
