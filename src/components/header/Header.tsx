@@ -2,6 +2,7 @@
 import './Header.scss';
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
 import themeIcon from './themeIcon';
 
 const Header: React.FC = () => {
@@ -17,18 +18,18 @@ const Header: React.FC = () => {
       <div className="header__logo">CW</div>
 
       <div className="header__menu">
-        <a className="header__menu-link" href="#">
+        <Link className="header__menu-link" to="/">
           Home
-        </a>
-        <a className="header__menu-link" href="#">
+        </Link>
+        <Link className="header__menu-link" to="/basic">
           Basic
-        </a>
-        <a className="header__menu-link" href="#">
+        </Link>
+        <Link className="header__menu-link" to="/mirror">
           Mirror
-        </a>
-        <a className="header__menu-link" href="#">
+        </Link>
+        <Link className="header__menu-link" to="/whiteboard">
           Whiteboard
-        </a>
+        </Link>
       </div>
 
       <div className="header__menu">
