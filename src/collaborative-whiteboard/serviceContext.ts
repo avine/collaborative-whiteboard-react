@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import CwService from './services';
+import CwService from './service';
 
 const CwServiceContext = createContext(new CwService());
 

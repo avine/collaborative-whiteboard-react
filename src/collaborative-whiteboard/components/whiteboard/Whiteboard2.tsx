@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { BroadcastDrawEvents, DrawEvent } from '../../models';
 import { getDefaultCanvasSize, getDefaultDrawOptions } from '../../operators';
-import CwServiceContext from '../../servicesContext';
+import CwServiceContext from '../../serviceContext';
 import CanvasTool from '../canvas-tool/CanvasTool';
 import Canvas from '../canvas/Canvas';
 
