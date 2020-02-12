@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { BroadcastDrawEvents, DrawEvent } from '../../models';
+import { DrawEvent, DrawEventsBroadcast } from '../../models';
 import { getDefaultCanvasSize, getDefaultDrawOptions } from '../../operators';
 import CwServiceContext from '../../serviceContext';
 import Canvas from '../canvas/Canvas';
@@ -18,7 +18,7 @@ export interface WhiteboardProps {
 const Whiteboard: React.FC<WhiteboardProps> = ({ fitParentElement }) => {
   const service = useContext(CwServiceContext);
 
-  const [historyCut, setHistoryCut] = useState<BroadcastDrawEvents>();
+  const [historyCut, setHistoryCut] = useState<DrawEventsBroadcast>();
 
   const [canvasSize, setCanvasSize] = useState(getDefaultCanvasSize());
   const canvasContainer = useRef<HTMLDivElement>();
@@ -49,7 +49,7 @@ const Whiteboard: React.FC<WhiteboardProps> = ({ fitParentElement }) => {
 
   const [drawOptions, setDrawOptions] = useState(getDefaultDrawOptions());
 
-  const [broadcast, setBroadcast] = useState<BroadcastDrawEvents>();
+  const [broadcast, setBroadcast] = useState<DrawEventsBroadcast>();
   service.broadcast$.subscribe(_broadcast => setBroadcast(_broadcast));
 
   const drawHandler = (event: DrawEvent) => service.emit(event);

@@ -2,15 +2,15 @@
 import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
 import { first, map } from 'rxjs/operators';
 import {
-  BroadcastDrawEvents,
   CutRange,
   CutRangeArg,
   DrawEvent,
+  DrawEventsBroadcast,
   DrawTransport,
   Owner
 } from './models';
 import {
-  broadcastDrawEventsMapper,
+  drawEventsBroadcastMapper,
   getClearEvent,
   getHash,
   normalizeCutRange
@@ -28,7 +28,7 @@ class CwService {
   /**
    * Dispatch draw events from the server to the client
    */
-  private broadcast$$ = new Subject<BroadcastDrawEvents>();
+  private broadcast$$ = new Subject<DrawEventsBroadcast>();
 
   /**
    * Dispatch draw events from the client to the server
@@ -53,7 +53,7 @@ class CwService {
   ]).pipe(
     map(([historyCut, [from, to]]) => {
       const slice = [getClearEvent(), ...historyCut.slice(from, to + 1)];
-      return broadcastDrawEventsMapper(slice);
+      return drawEventsBroadcastMapper(slice);
     })
   );
 
@@ -153,7 +153,7 @@ class CwService {
     if (ownerEvents.length) {
       this.dropHistoryRedoAgainst(ownerEvents);
     }
-    this.broadcast$$.next(broadcastDrawEventsMapper(events, true));
+    this.broadcast$$.next(drawEventsBroadcastMapper(events, true));
     this.emitHistory();
   }
 
@@ -167,7 +167,7 @@ class CwService {
         this.pushHistoryRedo(ownerEvents);
       }
       this.broadcast$$.next(
-        broadcastDrawEventsMapper([getClearEvent(), ...this.history])
+        drawEventsBroadcastMapper([getClearEvent(), ...this.history])
       );
       this.emitHistory();
     }
@@ -221,7 +221,7 @@ class CwService {
     if (event) {
       this.pushHistoryRedo([event]);
       this.broadcast$$.next(
-        broadcastDrawEventsMapper([getClearEvent(), ...this.history])
+        drawEventsBroadcastMapper([getClearEvent(), ...this.history])
       );
       this.emit$$.next({ action: 'remove', events: [event] });
       this.emitHistory();
@@ -232,7 +232,7 @@ class CwService {
     const events = this.popHistoryRedo();
     if (events) {
       events.forEach(event => this.pushHistory(event));
-      this.broadcast$$.next(broadcastDrawEventsMapper(events, true));
+      this.broadcast$$.next(drawEventsBroadcastMapper(events, true));
       this.emit$$.next({ action: 'add', events });
       this.emitHistory();
     }
@@ -243,7 +243,7 @@ class CwService {
     if (removed.length) {
       this.pushHistoryRedo(removed);
       this.broadcast$$.next(
-        broadcastDrawEventsMapper([getClearEvent(), ...this.history])
+        drawEventsBroadcastMapper([getClearEvent(), ...this.history])
       );
       this.emit$$.next({ action: 'remove', events: removed });
       this.emitHistory();
@@ -267,7 +267,7 @@ class CwService {
 
   redraw(animate = true) {
     const events = [getClearEvent(), ...this.history];
-    this.broadcast$$.next(broadcastDrawEventsMapper(events, animate));
+    this.broadcast$$.next(drawEventsBroadcastMapper(events, animate));
   }
 
   setCutRange(data: CutRangeArg) {

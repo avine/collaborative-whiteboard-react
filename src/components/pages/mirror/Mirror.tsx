@@ -2,8 +2,8 @@ import './Mirror.scss';
 import React, { useState } from 'react';
 import Canvas from '../../../collaborative-whiteboard/components/canvas/Canvas';
 import {
-  BroadcastDrawEvents,
-  DrawEvent
+  DrawEvent,
+  DrawEventsBroadcast
 } from '../../../collaborative-whiteboard/models';
 import {
   drawLineSerieToLinesMapper,
@@ -13,7 +13,7 @@ import {
 const Mirror: React.FC = () => {
   const [animate, setAnimate] = useState(true);
 
-  const [broadcast, setBroadcast] = useState<BroadcastDrawEvents>();
+  const [broadcast, setBroadcast] = useState<DrawEventsBroadcast>();
 
   const animateHandler = () => {
     setAnimate(!animate);

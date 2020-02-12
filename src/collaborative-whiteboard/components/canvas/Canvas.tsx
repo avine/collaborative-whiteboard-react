@@ -5,12 +5,12 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { createRef, MouseEvent, TouchEvent } from 'react';
 import {
-  BroadcastDrawEvents,
   CanvasLine,
   CanvasLineSerie,
   CanvasPoint,
   CanvasSize,
   DrawEvent,
+  DrawEventsBroadcast,
   DrawOptions
 } from '../../models';
 import {
@@ -26,7 +26,7 @@ export interface CanvasProps {
   className?: string;
   canvasSize?: CanvasSize;
   showGuides?: boolean;
-  broadcast?: BroadcastDrawEvents;
+  broadcast?: DrawEventsBroadcast;
   drawOptions?: DrawOptions;
   drawDisabled?: boolean;
   canvasSizeHandler?: (canvasSize: CanvasSize) => void;

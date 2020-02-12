@@ -1,12 +1,12 @@
 import { MD5 } from 'object-hash';
 
 import {
-  BroadcastDrawEvents,
   CanvasSize,
   CutRange,
   CutRangeArg,
   DrawClear,
   DrawEvent,
+  DrawEventsBroadcast,
   DrawOptions
 } from './models';
 
@@ -79,10 +79,10 @@ export const drawLineSerieToLinesMapper = (
   return result;
 };
 
-export const broadcastDrawEventsMapper = (
+export const drawEventsBroadcastMapper = (
   events: DrawEvent[],
   animate = false
-): BroadcastDrawEvents => ({
+): DrawEventsBroadcast => ({
   animate,
   events: animate ? drawLineSerieToLinesMapper(events) : events
 });
