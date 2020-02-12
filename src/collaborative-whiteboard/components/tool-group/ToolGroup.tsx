@@ -3,12 +3,13 @@ import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
 import Draggable from 'react-draggable';
 import Icon from '../icon/Icon';
+import { DragPosition } from '../models';
 import Tool from './Tool';
 
 export interface ToolGroupProps {
   dragBounds?: string;
-  dragPosition?: { x: number; y: number };
-  dragPositionHandler?: (position: { x: number; y: number }) => void;
+  dragPosition?: DragPosition;
+  dragPositionHandler?: (position: DragPosition) => void;
 }
 
 const ToolGroup: React.FC<ToolGroupProps> = ({

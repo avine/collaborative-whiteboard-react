@@ -5,6 +5,8 @@ import CwServiceContext from '../../serviceContext';
 import Cut from '../cut/Cut';
 import DrawLine from '../draw-line/DrawLine';
 import Icon from '../icon/Icon';
+import { DragPosition } from '../models';
+import { getDefaultDragPosition } from '../operators';
 import ToolContent from '../tool-content/ToolContent';
 import Tool from '../tool-group/Tool';
 import ToolGroup from '../tool-group/ToolGroup';
@@ -32,9 +34,15 @@ const CanvasTool: React.FC<CanvasToolProps> = ({
 
   const [showDrawLine, setShowDrawLine] = useState(false);
 
-  const [groupPosition, setGroupPosition] = useState({ x: 20, y: 60 });
-  const [drawLinePosition, setDrawLinePosition] = useState({ x: 20, y: 60 });
-  const [cutPosition, setCutPosition] = useState({ x: 20, y: 60 });
+  const [groupPosition, setGroupPosition] = useState<DragPosition>(
+    getDefaultDragPosition()
+  );
+  const [drawLinePosition, setDrawLinePosition] = useState<DragPosition>(
+    getDefaultDragPosition()
+  );
+  const [cutPosition, setCutPosition] = useState<DragPosition>(
+    getDefaultDragPosition()
+  );
 
   const drawLine = (
     <ToolContent

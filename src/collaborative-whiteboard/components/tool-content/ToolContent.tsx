@@ -2,13 +2,14 @@ import React from 'react';
 import { createPortal } from 'react-dom';
 import Draggable from 'react-draggable';
 import Icon from '../icon/Icon';
+import { DragPosition } from '../models';
 
 export interface ToolContentProps {
   title: string;
   dispose: () => void;
   dragBounds?: string;
-  dragPosition?: { x: number; y: number };
-  dragPositionHandler?: (position: { x: number; y: number }) => void;
+  dragPosition?: DragPosition;
+  dragPositionHandler?: (position: DragPosition) => void;
 }
 
 const ToolContent: React.FC<ToolContentProps> = ({
