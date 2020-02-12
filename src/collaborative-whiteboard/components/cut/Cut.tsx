@@ -8,42 +8,41 @@ export interface CutProps {}
 const Cut: React.FC<CutProps> = () => {
   const service = useContext(CwServiceContext);
 
-  const [lastIndex, setLastIndex] = useState(0);
-  const [index, setIndex] = useState(0);
-  const [maxSpread, setMaxSpread] = useState(1);
+  const [lastPosition, setLastPosition] = useState(1);
+  const [position, setPosition] = useState(1);
   const [spread, setSpread] = useState(1);
 
-  if (index > lastIndex) {
-    setIndex(lastIndex);
+  if (position > lastPosition) {
+    setPosition(lastPosition);
   }
-  if (spread > maxSpread) {
-    setSpread(maxSpread);
+  if (spread > lastPosition) {
+    setSpread(lastPosition);
   }
 
-  const getCutRange = (_index = index, _spread = spread): CutRange => [
-    _index,
-    _index + _spread - 1
-  ];
+  const getCutRange = (_position = position, _spread = spread): CutRange => {
+    const from = _position - 1;
+    const to = from + _spread - 1;
+    return [from, to];
+  };
 
   useEffect(() => {
     const subscription = service.historyCutLength$.subscribe(cutLength => {
-      setLastIndex(Math.max(0, cutLength - 1));
-      setMaxSpread(Math.max(1, cutLength));
+      setLastPosition(Math.max(1, cutLength));
     });
     service.setCutRange(getCutRange());
     return () => subscription.unsubscribe();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const indexHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newIndex = +event.target.value;
-    service.setCutRange(getCutRange(newIndex, spread));
-    setIndex(newIndex);
+  const positionHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newPosition = +event.target.value;
+    service.setCutRange(getCutRange(newPosition, spread));
+    setPosition(newPosition);
   };
 
   const spreadHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newSpread = +event.target.value;
-    service.setCutRange(getCutRange(index, newSpread));
+    service.setCutRange(getCutRange(position, newSpread));
     setSpread(newSpread);
   };
 
@@ -57,18 +56,18 @@ const Cut: React.FC<CutProps> = () => {
         <input
           className="cw-cut__field"
           type="range"
-          min="0"
-          max={lastIndex}
-          value={index}
-          onChange={indexHandler}
+          min="1"
+          max={lastPosition}
+          value={position}
+          onChange={positionHandler}
         />
-        <span className="cw-cut__number">{index}</span>
+        <span className="cw-cut__number">{position}</span>
         <br />
         <input
           className="cw-cut__field"
           type="range"
           min="1"
-          max={maxSpread}
+          max={lastPosition}
           value={spread}
           onChange={spreadHandler}
         />
