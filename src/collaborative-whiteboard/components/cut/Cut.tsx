@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useContext, useEffect, useState } from 'react';
+import { combineLatest } from 'rxjs';
 import { CutRange } from '../../models';
 import CwServiceContext from '../../serviceContext';
 
@@ -12,13 +13,6 @@ const Cut: React.FC<CutProps> = () => {
   const [position, setPosition] = useState(1);
   const [spread, setSpread] = useState(1);
 
-  if (position > lastPosition) {
-    setPosition(lastPosition);
-  }
-  if (spread > lastPosition) {
-    setSpread(lastPosition);
-  }
-
   const getCutRange = (_position = position, _spread = spread): CutRange => {
     const from = _position - 1;
     const to = from + _spread - 1;
@@ -26,10 +20,14 @@ const Cut: React.FC<CutProps> = () => {
   };
 
   useEffect(() => {
-    const subscription = service.historyCutLength$.subscribe(cutLength => {
+    const subscription = combineLatest([
+      service.historyCutLength$,
+      service.cutRange$
+    ]).subscribe(([cutLength, [from, to]]) => {
       setLastPosition(Math.max(1, cutLength));
+      setPosition(from + 1);
+      setSpread(to - from + 1);
     });
-    service.setCutRange(getCutRange());
     return () => subscription.unsubscribe();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

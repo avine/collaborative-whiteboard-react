@@ -79,6 +79,10 @@ class Canvas extends React.Component<CanvasProps> {
   componentDidMount() {
     this.applyCanvasSize();
     this.initCanvasCxt();
+
+    if (this.props.broadcast?.events?.length) {
+      this.broadcastHandler();
+    }
   }
 
   componentDidUpdate({ canvasSize, broadcast }: CanvasProps) {
@@ -113,15 +117,6 @@ class Canvas extends React.Component<CanvasProps> {
     if (this.canvasRef.current.getContext) {
       this.canvasCtx = this.canvasRef.current.getContext('2d');
       this.setDefaultCanvasCtx();
-
-      // This is tricky!
-      // In the method `broadcastHandler` we need to call `flushBroadcastBuffer`.
-      // But the method `flushBroadcastBuffer` requires the `canvasCtx` to be defined.
-      // This will not necessarily be the case!
-      // For this reason, we check again here, at the time the `canvasCtx` is well defined.
-      if (this.broadcastBuffer.length) {
-        this.flushBroadcastBuffer();
-      }
     } else {
       // eslint-disable-next-line no-console
       console.error('Canvas NOT supported!');
@@ -130,12 +125,7 @@ class Canvas extends React.Component<CanvasProps> {
 
   private broadcastHandler() {
     this.updateBroadcastBuffer();
-    if (this.canvasCtx) {
-      // Note: the following method might be NOT called (if the `canvasCtx` is not yet defined).
-      // And this will occurs if there's a `broadcast` @Input at the time `ngOnInit` is fired.
-      // For this reason, we flush the buffer again in the method `initCanvasCtx`.
-      this.flushBroadcastBuffer();
-    }
+    this.flushBroadcastBuffer();
   }
 
   private updateBroadcastBuffer() {
