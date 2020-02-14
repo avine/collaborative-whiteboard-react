@@ -1,8 +1,8 @@
 import React from 'react';
-import Cut from './Cut';
+import Cut from './CutOld';
 
 export default {
-  title: 'Cut',
+  title: 'CutOld',
   component: Cut
 };
 
